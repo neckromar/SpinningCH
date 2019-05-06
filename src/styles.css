@@ -1,0 +1,227 @@
+/* You can add global styles to this file, and also import other style files */
+.avatar_edit{
+    width: 30%;
+    border-radius: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+body{
+    font-family: Roboto,Helvetica,Arial,sans-serif !important;
+}
+.alejadodeltop{
+    padding-top: 50px;
+}
+form .avatar{
+    width: 75px;
+    margin-bottom: 15px;
+}
+.alinearalcentro{
+    margin-left: 15%;
+}
+.nav-item{
+    margin-top:50px !important;
+}
+.header_area{
+    margin-top:-20px !important;
+}
+.imagenes{
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+    padding: 0px;
+    
+   
+}
+
+.titulo{
+    text-align: center;
+}
+.autor{
+    
+    padding: 0px;
+    float:left;
+}
+.linksvideo{
+   margin-left: 40%;
+    
+}
+.alcentro{
+    align-items: center;
+}
+
+#video-play{
+    width: 70%;
+}
+.navbar .container-avatar,
+.pub_image .container-avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 900px;
+    overflow: hidden;
+    margin-left:20px;
+}
+.navbar .container-avatar img,
+.pub_image .container-avatar img{
+    height: 100%;
+}
+
+.pub_image{
+    margin-bottom: 25px;
+}
+
+.pub_image .container-avatar{
+    float:left;
+    margin-right: 15px;
+}
+
+.pub_image .data-user{
+    font-weight: bold;
+    line-height: 35px;
+}
+
+.pub_image .data-user a{
+   color:#444;
+}
+
+.image-container{
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+}
+.image-container detail{
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.image-container img{
+    width: 100%;
+}
+
+.image-detail{
+    max-height: 500px;
+}
+.pub_image .card-body{
+    padding: 0px;
+}
+
+.pub_image .description{
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.pub_image .btn-comments{
+    margin: 20px;
+    margin-top:0px;
+    margin-left:0px;
+
+}
+
+.likes{
+    float:left;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.likes img{
+    width: 25px;
+}
+
+.pub_image_detail .comments{
+    padding: 20px;
+}
+
+.number_likes{
+    color:gray;
+    font-size: 11px;
+}
+.profile-user{
+    height: 200px;
+    margin-bottom:40px;
+}
+
+.profile-user .container-avatar{
+   width:200px;
+   height: 200px;
+   border-radius: 900px;
+   overflow: hidden;
+   float:left;
+}
+
+.profile-user .container-avatar img{
+   
+   height: 100%;
+}
+.profile-user .user-info{
+    float:left;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.btn-search{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.g-bg-nuevo{
+    background-color:#bcbcbc;
+}
+.h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
+   
+    font-weight: 300 !important;
+    line-height: 1.5em !important;
+}
+.avatar_nav{
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.avatar_nav img{
+    width: 50px;
+    height: 50px;
+}
+.input-group .input-group-addon {
+    border: 0;
+    background: 0 0;
+    padding: 12px 15px 0;
+}
+.registrocuadro{
+    position: relative;
+    width: 100%;
+    border-radius: 3px;
+    color: rgba(0,0,0,.87);
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.inputstyle{
+    border: 0;
+    background-image: linear-gradient(#209e10,#209e10),linear-gradient(#D2D2D2,#D2D2D2);
+    background-size: 0 2px,100% 1px;
+    background-repeat: no-repeat;
+    background-position: center bottom,center calc(100% - 1px);
+    background-color: transparent;
+    transition: background 0s ease-out;
+    float: none;
+    box-shadow: none;
+    border-radius: 0;
+    font-weight: 400;
+}
+.card [class*=header-] {
+    color: #FFF;
+}
+
+.header-primary {
+    background: linear-gradient(-34deg,#bcbcbc 0,#fcfcfc 100%);
+}
+.header {
+    /* margin: 15px; */
+    border-radius: 3px;
+    padding: 15px 0;
+    background-color: #FFF;
+}
+.header, .card-raised, .tarjeta-registro .header {
+    box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+.btn-primario{
+    background-color: #0069d9 !important;
+}

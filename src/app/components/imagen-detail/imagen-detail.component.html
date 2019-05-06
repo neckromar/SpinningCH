@@ -1,0 +1,100 @@
+<section class="g-pos-rel text-center">
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-8">
+                <h2>{{title}}</h2>
+                <hr>
+                <img style="width:80%;" src="{{url + 'imagenes/image-collect/'+ imagenes.imagen_path}}" />
+                <div class="col-sm-8 alinearalcentro">
+
+                    <div class="card card-default video-data">
+                        <div class="card-header">
+                            <img src="{{url + 'user/image-collect/'+ imagenes.user.image_path}}"
+                                style="text-align: center;" class="avatar_nav" />
+                            Subido por <strong> {{imagenes.user.name}} {{imagenes.user.surname}} </strong>
+
+                        </div>
+                        <div class="card-body description">
+                            {{imagenes.description}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="col-sm-4" id='comments-list'>
+                <h4>Comentarios</h4>
+                <div class="card card-default video-data" *ngFor="let comentario of comentarios">
+
+                    <div class="card-header">
+                        {{comentario.usercomentario.name }} {{comentario.usercomentario.surname }}
+                    </div>
+                    <div class="card-body">
+                        {{ comentario.comentario }}
+                        <?php $comentario=0 ?>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
+                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Borrar</button>
+
+                        <!-- Modal -->
+                        <div id="myModal"   class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Borrar</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Estas seguro de querrer borrar este comentario ? SE BORRARÁ PERMANENTEMENTE!!
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal"  (click)="deleteComentario(comentario.id)">BORRAR</button>
+                                        <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <br>
+                <br><br>
+
+                <div class="form-group g-mb-20" *ngIf="status == 'success' ">
+                    <div class="alert alert-success">
+                        El comentario se ha publicado correctamente
+                    </div>
+                </div>
+                <h4>Comentar</h4>
+                <form #comentForm="ngForm" (ngSubmit)="onSubmit(comentForm)" class="col-sm-10">
+                    <p><textarea name="comentario" class="form-control col-md-12" #comentario="ngModel"
+                            [(ngModel)]="comentario.comentario" required placeholder="Comentario"></textarea></p>
+
+                    <p *ngIf="!comentario.valid && comentario.touched" class="text-danger mt-1">
+                        <strong>Elcomentario es necesario</strong>
+                    </p>
+
+                    <button type="submit" value="Comentar" class="btn btn-lg btn-success">Comentar</button>
+
+
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
