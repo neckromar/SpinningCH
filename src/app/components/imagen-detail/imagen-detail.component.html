@@ -35,13 +35,59 @@
                     </div>
                     <div class="card-body">
                         {{ comentario.comentario }}
-                        <?php $comentario=0 ?>
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
-                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Borrar</button>
+
+<br>
+
+                        <!-- boton para editar comentario-->
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                            [attr.data-target]="'#myModaledit'+ comentario.id" (click)="getComentario(comentario.id)"
+                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Editar</button>
 
                         <!-- Modal -->
-                        <div id="myModal"   class="modal fade" role="dialog">
+                        <div id="{{'myModaledit'+comentario.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Editar comentario</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Estas seguro de querrer editar este comentario ?
+                                        </p>
+
+                                        <form #comenteditForm="ngForm" (ngSubmit)="onEdit(comenteditForm)"
+                                            class="col-sm-10">
+                                            <p><textarea name="comentarioeditar" class="form-control col-md-12"
+                                                    #comentarioeditar="ngModel" [(ngModel)]="comments.comentario"
+                                                    required></textarea></p>
+
+                                            <p *ngIf="!comentario.valid && comentario.touched" class="text-danger mt-1">
+                                                <strong>Elcomentario es necesario</strong>
+                                            </p>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                            (click)="onEdit(comenteditForm)">Editar</a>
+                                        <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- boton para borrar-->
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                            [attr.data-target]="'#myModal'+ comentario.id"
+                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Borrar</button>
+
+
+                        <!-- Modal -->
+                        <div id="{{'myModal'+comentario.id}}" class="modal fade" role="dialog">
                             <div class="modal-dialog">
 
                                 <!-- Modal content-->
@@ -55,8 +101,9 @@
                                         </p>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                            data-dismiss="modal"  (click)="deleteComentario(comentario.id)">BORRAR</button>
+                                        <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                            (click)="deleteComentario(comentario.id)">BORRAR</a>
+
                                         <button type="button" class="btn btn-success"
                                             data-dismiss="modal">Close</button>
                                     </div>
@@ -66,18 +113,22 @@
                         </div>
 
 
-
-
                     </div>
+
                 </div>
                 <br>
                 <br><br>
+
+
 
                 <div class="form-group g-mb-20" *ngIf="status == 'success' ">
                     <div class="alert alert-success">
                         El comentario se ha publicado correctamente
                     </div>
+
+
                 </div>
+
                 <h4>Comentar</h4>
                 <form #comentForm="ngForm" (ngSubmit)="onSubmit(comentForm)" class="col-sm-10">
                     <p><textarea name="comentario" class="form-control col-md-12" #comentario="ngModel"

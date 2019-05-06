@@ -21,7 +21,7 @@ export class ComentarioNewComponent implements OnInit {
   public token;
   public identity;
   public status: string;
-
+  public comentarioid=0;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,

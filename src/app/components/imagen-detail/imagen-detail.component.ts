@@ -27,6 +27,7 @@ export class ImagenDetailComponent implements OnInit {
   public comentarios: Array<any>;
   public comments: Comentario;
   public id;
+  public verdadero:Boolean;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -39,6 +40,7 @@ export class ImagenDetailComponent implements OnInit {
     this.token = this._userService.getToken();
     this.identity = this._userService.getIdentity();
     this.url = GLOBAL.url;
+    this.verdadero =false;
 
   }
   ngOnInit() {
@@ -116,6 +118,53 @@ export class ImagenDetailComponent implements OnInit {
       }
     );
   }
+  onEdit(form) {
+    
+    this.comments.comentario = form.value.comentarioeditar;
+    
+    this.comments.imagen_id = this.id;
+    this._comentarioService.update(this.token,this.comments,this.comments.id).subscribe(
+      response => {
+        if (response.status == 'success') {
+
+          this.verdadero=true;
+          this.status = response.status;
+          //vaciar el formulario
+          this.comments = new Comentario(1, this.identity.sub, '', 'ACTIVAR', 1, 1, 1);
+          this.getImagen(this.id);
+        }
+        else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
+  }
+
+
+  getComentario(id) {
+    
+      this._comentarioService.getComentario(id).subscribe(
+  
+        response => {
+          if (response.status == 'success') {
+  
+            this.comments = response.comentario;
+           
+          }
+        },
+        error => {
+          console.log(error);
+         
+        }
+      );
+    
+    }
+
+    
+  
 
   deleteComentario(id) {
     this._comentarioService.delete(this.token, id).subscribe(
@@ -123,7 +172,7 @@ export class ImagenDetailComponent implements OnInit {
         if (response.status == 'success') {
 
           this.status = 'success';
-          this.getImagen(this.id);
+          this.getImagen(id);
         }
         else {
           this.status = 'error';
