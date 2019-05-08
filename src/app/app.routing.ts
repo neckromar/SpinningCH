@@ -11,6 +11,7 @@ import { ImagenNewComponent } from './components/imagen-new/imagen-new.component
 import { ImagenDefaultComponent } from './components/imagen-default/imagen-default.component';
 import { ImagenDetailComponent } from './components/imagen-detail/imagen-detail.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
+import { VideoNewComponent } from './components/video-new/video-new.component';
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -22,7 +23,8 @@ const appRoutes: Routes =[
     {path:'update-user',component:UserEditComponent},
     {path:'imagenes', component: ImagenNewComponent},
     {path:'imagenes/listado', component: ImagenDefaultComponent},
-    {path:'imagenes/:id', component: ImagenDetailComponent}
+    {path:'imagenes/:id', component: ImagenDetailComponent},
+    {path:'videos', component: VideoNewComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

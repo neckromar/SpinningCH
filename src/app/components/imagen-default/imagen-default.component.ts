@@ -101,5 +101,21 @@ getImagenes() {
   }
 
 
+  deleteImagen(id) {
+    this._imagenService.delete(this.token, id).subscribe(
+      response => {
+        if (response.status == 'success') {
 
+          this.status = 'success';
+          this._router.navigate(["/home"]);
+        }
+        else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }

@@ -5,9 +5,11 @@ import { Observable, Subject } from 'rxjs';
 import { GLOBAL } from './global';
 import { Imagen } from '../models/imagen';
 import { User } from '../models/user';
+import { Comentario } from '../models/comentario';
+import { Video } from '../models/video';
 
 @Injectable()
-export class ImagenService{
+export class VideoService{
     public url: string;
     public identity;
     public token;
@@ -19,27 +21,21 @@ export class ImagenService{
          
     }
 
-    store(imagen,token): Observable<any>{
-        let json = JSON.stringify(imagen);
+    store(video,token): Observable<any>{
+        let json = JSON.stringify(video);
         let params = 'json='+json;
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization',token);
 
-        return this._http.post(this.url+'imagenes',params, {headers: headers} );
+        return this._http.post(this.url+'videos',params, {headers: headers} );
     }
-    getImagenes(): Observable<any>{
+    getVideos(): Observable<any>{
         let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-        return this._http.get(this.url+ 'imagenes',{headers: headers});   
+        return this._http.get(this.url+ 'videos',{headers: headers});   
     }
 
-    getImagen(id): Observable<any>{
+    getVideo(id): Observable<any>{
         let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-        return this._http.get(this.url+ 'imagenes/'+id ,{headers: headers});   
+        return this._http.get(this.url+ 'videos'+id ,{headers: headers});   
    
-    }
-    delete(token,id): Observable<any>{
-        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
-        .set('Authorization',token);
-
-        return this._http.delete(this.url+'imagenes/'+id,{headers:headers});
     }
 }

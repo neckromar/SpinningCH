@@ -1,50 +1,97 @@
 <section class="g-pos-rel text-center">
 
-      <div class="js-carousel" data-autoplay="true" data-infinite="true"
-          data-fade="true" data-speed="5000">
-          <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
-              style="background-image: url('assets/images/usuarios/poseidon.jpg');">
-  
-              <div class="container ">
-                    <div class="row " >
-                        <div class="col-md-4 alejadodeltop " *ngFor="let imagen of imagenes" >
-                           
+    <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+        <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
+            style="background-image: url('assets/images/usuarios/poseidon.jpg');">
 
-                            <div class="card pub_image ">
-                                <div class="card-header">
-                                    <div class="container-avatar">
-                                            <img src="{{url + 'user/image-collect/'+ imagen.user.image_path}}" />
-                                    </div> 
-                                    <div class="data-user">
-                                        {{imagen.user.name}}  
+            <div class="container ">
+                <div class="row ">
+
+                   
+
+                    <div class="col-md-4 alejadodeltop " *ngFor="let imagen of imagenes">
+                            
+                        
+                        <div class=" g-mb-20" *ngIf="status == 'success' ">
+                                    <div class="alert alert-success">
+                                       La operacion se ha realizado correctamente
                                     </div>
-                                </div> 
-                                <div class="card-body">
-                                    <div class="image-container">
-                                            <div >
-                                                    <img src="{{url + 'imagenes/image-collect/'+ imagen.imagen_path}}" />
+                   </div>
+
+                        <div class="card pub_image ">
+                            <div class="card-header">
+                                <div class="container-avatar">
+                                    <img src="{{url + 'user/image-collect/'+ imagen.user.image_path}}" />
+                                </div>
+                                <div class="data-user">
+                                    {{imagen.user.name}}
+                                    <div *ngIf="imagen.user_id == identity.sub || identity.role == 'ROLE_ADMIN'"
+                                        style="align-content: right ;">
+
+
+                                        <!-- boton para borrar-->
+                                        <!-- Trigger the modal with a button -->
+                                        <a type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            [attr.data-target]="'#myModal'+ imagen.id">X</a>
+
+
+                                        <!-- Modal -->
+                                        <div id="{{'myModal'+imagen.id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Estas seguro de querrer borrar esta imagen ? SE BORRARÁ
+                                                            PERMANENTEMENTE!!
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                                            (click)="deleteImagen(imagen.id)">BORRAR</a>
+
+                                                        <button type="button" class="btn btn-success"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                    </div> 
-                                    <div class="description">
-                                        {{imagen.description}} 
-                                         
-                                    </div>
-                                    <div>
-                                         <div class="comments"><a [routerLink]="['/imagenes',imagen.id]" class="btn btn-sm btn-warning btn-comments">  Comentarios(  {{comentario}} ) </a>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                
                             </div>
-                           
+                            <div class="card-body">
+                                <div class="image-container">
+                                    <div>
+                                        <img src="{{url + 'imagenes/image-collect/'+ imagen.imagen_path}}" />
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    {{imagen.description}}
+
+                                </div>
+                                <div>
+                                    <div class="comments"><a [routerLink]="['/imagenes',imagen.id]"
+                                            class="btn btn-sm btn-warning btn-comments"> Comentarios( {{comentario}} )
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    
-                     
+
                     </div>
-                 
-                    
-              </div>
-          </div>
-      </div>
-  
-  </section>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>

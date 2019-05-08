@@ -16,6 +16,8 @@
               <li class="nav-item active">  <a [routerLink]="['home']" class="nav-link p-0">Inicio<span class="sr-only">(current)</span></a> </li> 
               <li class="nav-item">   <a [routerLink]="['imagenes']" class="nav-link p-0">Subir Imagen</a></li> 
               <li class="nav-item"><a [routerLink]="['imagenes/listado']" class="nav-link p-0">Listado de imagenes</a></li>
+              <li class="nav-item">   <a [routerLink]="['videos']" class="nav-link p-0">Subir Video</a></li> 
+
               <li class="nav-item">   <a [routerLink]="['login']" *ngIf="!identity " class="nav-link p-0"> Login</a></li>
               <li class="nav-item">   <a [routerLink]="['registro']" class="nav-link p-0" *ngIf="!identity "> Registrate</a></li>
               <li class="nav-item avatar_nav" *ngIf="identity && identity.image_path">    <img src="{{url + 'user/image-collect/'+ identity.image_path}}"  /></li>
