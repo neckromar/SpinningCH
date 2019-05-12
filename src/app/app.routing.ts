@@ -12,6 +12,9 @@ import { ImagenDefaultComponent } from './components/imagen-default/imagen-defau
 import { ImagenDetailComponent } from './components/imagen-detail/imagen-detail.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
 import { VideoNewComponent } from './components/video-new/video-new.component';
+import { VideoDefaultComponent } from './components/video-default/video-default.component';
+import { VideoDetailComponent } from './components/video-detail/video-detail.component';
+
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -24,7 +27,9 @@ const appRoutes: Routes =[
     {path:'imagenes', component: ImagenNewComponent},
     {path:'imagenes/listado', component: ImagenDefaultComponent},
     {path:'imagenes/:id', component: ImagenDetailComponent},
-    {path:'videos', component: VideoNewComponent}
+    {path:'videos', component: VideoNewComponent},
+    {path:'videos/listado', component: VideoDefaultComponent},
+    {path:'videos/:id', component: VideoDetailComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

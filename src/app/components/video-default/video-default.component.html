@@ -1,0 +1,62 @@
+<section class="g-pos-rel text-center">
+
+    <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+        <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
+            style="background-image: url('assets/images/usuarios/poseidon.jpg');">
+
+            <div class="container ">
+                <div class="row ">
+
+                   
+
+                    <div class="col-md-4 alejadodeltop " *ngFor="let video of videos">
+                            
+                        
+                        <div class=" g-mb-20" *ngIf="status == 'success' ">
+                                    <div class="alert alert-success">
+                                       La operacion se ha realizado correctamente
+                                    </div>
+                   </div>
+
+                        <div class="card pub_image ">
+                            <div class="card-header">
+                                <div class="container-avatar">
+                                    <img src="{{url + 'user/image-collect/'+ video.user.image_path}}" />
+                                </div>
+                                <div class="data-user">
+                                    {{video.user.name }} {{video.user.surname}}
+                                   <br>
+                                   <h3>Title:{{video.title}}</h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="image-container">
+                                    <div>
+                                        <img src="{{url + 'videos/miniatura-collect/'+ video.miniatura}}" />
+                                    </div>
+                                </div>
+                                <div class="description">
+                                 
+                                    {{video.description}}
+                                </div>
+                                <div>
+                                    <div class="comments"><a [routerLink]="['/videos',video.id]"
+                                            class="btn btn-sm btn-success btn-comments"> Ver video
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>

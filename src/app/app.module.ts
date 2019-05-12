@@ -18,6 +18,8 @@ import { ImagenDefaultComponent } from './components/imagen-default/imagen-defau
 import { ImagenDetailComponent } from './components/imagen-detail/imagen-detail.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
 import { VideoNewComponent } from './components/video-new/video-new.component';
+import { VideoDefaultComponent } from './components/video-default/video-default.component';
+import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { VideoNewComponent } from './components/video-new/video-new.component';
     ImagenDefaultComponent,
     ImagenDetailComponent,
     ComentarioNewComponent,
-    VideoNewComponent
+    VideoNewComponent,
+    VideoDefaultComponent,
+    VideoDetailComponent
   ],
   imports: [
     BrowserModule,
