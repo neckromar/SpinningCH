@@ -1,0 +1,38 @@
+<section class="g-pos-rel text-center">
+
+      <div class="js-carousel" data-autoplay="true" data-infinite="true"
+          data-fade="true" data-speed="5000">
+          <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
+              style="background-image: url('assets/images/usuarios/prueba2.jpg');">
+  
+              <div class="container ">
+                  <div class="u-bg-overlay__inner g-absolute-centered w-100">
+                        <div class="container text-center ">
+    
+                            
+                           
+                            <form role="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" accept-charset="UTF-8" novalidate>
+
+                                 
+                                <div class="form-group has-feedback" 
+                                      [ngClass]="{ 'has-error': description.invalid && description.touched }">
+                                    <ckeditor [(ngModel)]="post.description"
+                                            #description="ngModel"
+                                            name="description"
+                                            required
+                                            [config]="ckeConfig" 
+                                            debounce="500" 
+                                            (change)="onChange($event)">
+                                    </ckeditor>
+                                  <div *ngIf="description.invalid && description.touched" class="help-block">Required field.</div>
+                                </div>
+                                <button [disabled]="myForm.invalid" class="btn btn-primary">Save</button>
+                                </form>
+                        </div>
+                    </div>
+                 
+              </div>
+          </div>
+      </div>
+  
+  </section>

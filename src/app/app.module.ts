@@ -20,7 +20,8 @@ import { ComentarioNewComponent } from './components/comentario-new/comentario-n
 import { VideoNewComponent } from './components/video-new/video-new.component';
 import { VideoDefaultComponent } from './components/video-default/video-default.component';
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
-
+import { PostNewComponent } from './components/post-new/post-new.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -36,14 +37,16 @@ import { VideoDetailComponent } from './components/video-detail/video-detail.com
     ComentarioNewComponent,
     VideoNewComponent,
     VideoDefaultComponent,
-    VideoDetailComponent
+    VideoDetailComponent,
+    PostNewComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     HttpClientModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    CKEditorModule
   ],
   providers: [
     appRoutingProviders

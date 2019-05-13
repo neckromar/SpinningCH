@@ -56,8 +56,8 @@ export class VideoDetailComponent implements OnInit {
       this._route.params.subscribe(params => {
         this.id = +params['id'];
 
-
         this.getVideo(this.id);
+
         this.comments = new Comentario(1,
           this.identity.sub,
           '',
@@ -96,7 +96,7 @@ export class VideoDetailComponent implements OnInit {
 onSubmit(form) {
 
     this.comments.comentario = form.value.comentario;
- 
+ console.log(form.value.comentario);
       this.comments.video_id = this.id;
     this._comentarioService.store(this.comments, this.token).subscribe(
       response => {
@@ -119,7 +119,7 @@ onSubmit(form) {
   onEdit(form) {
     
     this.comments.comentario = form.value.comentarioeditar;
-    console.log(this.id);
+   
     this.comments.video_id = this.id;
     this._comentarioService.update(this.token,this.comments,this.comments.id).subscribe(
       response => {

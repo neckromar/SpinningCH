@@ -6,7 +6,6 @@
         <div class="row">
 
             <div class="col-sm-8">
-                <h2>{{title}}</h2>
                 <hr>
                 <video style="width:80%;" src="{{url + 'videos/video-collect/'+ videos.video_path}}"  controls></video>
                 <div class="col-sm-8 alinearalcentro">
@@ -42,7 +41,7 @@
                         <!-- boton para editar comentario-->
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                             [attr.data-target]="'#myModaledit'+ comentario.id" (click)="getComentario(comentario.id)"
-                            *ngIf="comentario.user_id == identity.id || identity.role == 'ROLE_ADMIN'">Editar</button>
+                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Editar</button>
 
                         <!-- Modal -->
                         <div id="{{'myModaledit'+comentario.id}}" class="modal fade" role="dialog">
@@ -83,7 +82,7 @@
                         <!-- Trigger the modal with a button -->
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                             [attr.data-target]="'#myModal'+ comentario.id"
-                            *ngIf="comentario.user_id == identity.id || identity.role == 'ROLE_ADMIN'">Borrar</button>
+                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Borrar</button>
 
 
                         <!-- Modal -->
