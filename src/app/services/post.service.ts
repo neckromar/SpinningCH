@@ -26,5 +26,21 @@ export class PostService{
 
         return this._http.post(this.url+'posts',params, {headers: headers} );
     }
+    getPosts(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'posts',{headers: headers});   
+    }
+
+    delete(token,id): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+        .set('Authorization',token);
+
+        return this._http.delete(this.url+'posts/'+id,{headers:headers});
+    }
+    getImagen(id): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'posts/'+id ,{headers: headers});   
+   
+    }
    
 }

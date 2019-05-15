@@ -1,68 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
-import { Imagen } from '../../models/imagen';
-import { Video } from '../../models/video';
+import { Imagen} from '../../models/imagen';
+import { Post} from '../../models/post';
 import { UserService } from '../../services/user.service';
 import { ImagenService } from '../../services/Imagen.service';
+import { PostService } from '../../services/post.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { GLOBAL } from '../../services/global';
+import { GLOBAL} from '../../services/global';
 import { HttpClient } from '@angular/common/http';
-import { VideoService } from 'src/app/services/video.service';
-
-
+import { CKEditorComponent } from 'ng2-ckeditor';
 @Component({
-  selector: 'app-video-default',
-  templateUrl: './video-default.component.html',
-  providers: [UserService, ImagenService, VideoService]
+  selector: 'app-post-default',
+  templateUrl: './post-default.component.html',
+  providers: [UserService,ImagenService,PostService]
 })
-export class VideoDefaultComponent implements OnInit {
+export class PostDefaultComponent implements OnInit {
   public title: string;
   public token;
   public identity;
-  public imagen: Imagen;
+  public posts : Post;
   public status: string;
   public selectedFile: File = null;
   public url;
   public imagenes: Array<Imagen>;
-  public videos: Array<Video>;
 
 
-
+  
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
+    private _postService: PostService,
     private _imagenService: ImagenService,
-    private _videoService: VideoService,
     private http: HttpClient
   ) {
-
+    this.title = 'Añade una imagen!';
     this.token = this._userService.getToken();
     this.identity = this._userService.getIdentity();
-    this.url = GLOBAL.url;
-
+    this.url= GLOBAL.url;
+   
   }
   ngOnInit() {
+    
+    if(this.identity== null ){
+    this._router.navigate(["login"]);
+  }else{
+   
+    this.posts= new Post(1,
+      this.identity.sub,
+      '',
+     '',
+     'ACTIVAR');
 
-    if (this.identity == null) {
-      this._router.navigate(["login"]);
-    } else {
-
-      this.getVideos();
-    }
-
+     this.getPosts();
+    
+  }
+   
   }
 
-
-  getVideos() {
-    this._videoService.getVideos().subscribe(
+getPosts() {
+    this._postService.getPosts().subscribe(
 
       response => {
         if (response.status == 'success') {
 
-          this.videos = response.videos;
-          console.log(this.videos);
+          this.posts = response.posts;
+       
         }
       },
       error => {
@@ -71,8 +75,9 @@ export class VideoDefaultComponent implements OnInit {
     );
   }
 
-  deleteVideo(id) {
-    this._videoService.delete(this.token, id).subscribe(
+
+  deletePost(id) {
+    this._postService.delete(this.token, id).subscribe(
       response => {
         if (response.status == 'success') {
 
@@ -88,5 +93,4 @@ export class VideoDefaultComponent implements OnInit {
       }
     );
   }
-
 }

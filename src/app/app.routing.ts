@@ -15,7 +15,8 @@ import { VideoNewComponent } from './components/video-new/video-new.component';
 import { VideoDefaultComponent } from './components/video-default/video-default.component';
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
-
+import { PostDefaultComponent } from './components/post-default/post-default.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -32,6 +33,8 @@ const appRoutes: Routes =[
     {path:'videos/listado', component: VideoDefaultComponent},
     {path:'videos/:id', component: VideoDetailComponent},
     {path:'posts', component: PostNewComponent},
+    {path:'posts/listado', component: PostDefaultComponent},
+    {path:'posts/:id', component: PostDetailComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -50,6 +50,7 @@ export class PostNewComponent implements OnInit {
     else{
       this.post= new Post(1,
         this.identity.sub,
+        '',
        '',
        'ACTIVAR');
 
@@ -111,7 +112,7 @@ response => {
           this.status='success';
             this.status = response.status;
             //vaciar el formulario
-            this.post= new Post(1,1,'','');
+            this.post= new Post(1,1, '','','');
             this._router.navigate(["home"]);
         }   
         else{

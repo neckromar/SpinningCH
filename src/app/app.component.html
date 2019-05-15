@@ -24,6 +24,7 @@
               <li class="nav-item">   <a [routerLink]="['registro']" class="nav-link p-0" *ngIf="!identity "> Registrate</a></li>
 
               <li class="nav-item">   <a [routerLink]="['posts']" class="nav-link p-0">Crear POSTS</a></li> 
+              <li class="nav-item">   <a [routerLink]="['posts/listado']" class="nav-link p-0">Listar POSTS</a></li> 
 
               <li class="nav-item avatar_nav" *ngIf="identity && identity.image_path">    <img src="{{url + 'user/image-collect/'+ identity.image_path}}"  /></li>
               <li class="nav-item">     <a [routerLink]="['/update-user']" class="nav-link p-0" *ngIf="identity">{{identity.name + ' '+identity.surname}}</a></li>

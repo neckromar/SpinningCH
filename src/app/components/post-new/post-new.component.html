@@ -13,6 +13,23 @@
                            
                             <form role="form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" accept-charset="UTF-8" novalidate>
 
+                                
+                                <div class="form-group g-mb-20 input-group">
+
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">title</i>
+                                    </span>
+                                    <input type="text"
+                                        class="form-control g-font-size-default  g-brd-white inputstyle "
+                                        name="title" #title="ngModel"
+                                        [(ngModel)]="post.title" required
+                                        placeholder="Title" />
+
+                                </div>
+                                <p *ngIf="!title.valid && title.touched"
+                                    class="text-danger mt-1">
+                                    <strong>El titulo es necesario</strong>
+                                </p>
                                  
                                 <div class="form-group has-feedback" 
                                       [ngClass]="{ 'has-error': description.invalid && description.touched }">
@@ -25,6 +42,7 @@
                                             (change)="onChange($event)">
                                     </ckeditor>
                                   <div *ngIf="description.invalid && description.touched" class="help-block">Required field.</div>
+
                                 </div>
                                 <button [disabled]="myForm.invalid" class="btn btn-primary">Save</button>
                                 </form>

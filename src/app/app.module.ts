@@ -22,6 +22,9 @@ import { VideoDefaultComponent } from './components/video-default/video-default.
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { PostDefaultComponent } from './components/post-default/post-default.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
     VideoNewComponent,
     VideoDefaultComponent,
     VideoDetailComponent,
-    PostNewComponent
+    PostNewComponent,
+    PostDefaultComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
