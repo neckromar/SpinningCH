@@ -9,7 +9,7 @@
 
                    
 
-                    <div class="col-md-4 alejadodeltop " *ngFor="let post of posts">
+                    <div class="col-md-4 alejadodeltop " *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }">
                             
                         
                                <div class=" g-mb-20" *ngIf="status == 'success' ">
@@ -73,15 +73,13 @@
                                     </tr>
                                 </table>
                        
-                           
-
                     </div>
-
 
                 </div>
 
-
             </div>
+            
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
 

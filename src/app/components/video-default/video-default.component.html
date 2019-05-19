@@ -5,18 +5,17 @@
         style="background-image: url('assets/images/usuarios/prueba2.jpg');">
 
             <div class="container ">
+
                 <div class="row ">
 
-                   
-
-                    <div class="col-md-4 alejadodeltop " *ngFor="let video of videos">
+                    <div class="col-md-4 alejadodeltop " *ngFor="let video of videos | paginate: { itemsPerPage: 3, currentPage: p }">
                             
                         
                         <div class=" g-mb-20" *ngIf="status == 'success' ">
                                     <div class="alert alert-success">
                                        La operacion se ha realizado correctamente
                                     </div>
-                   </div>
+                         </div>
 
                         <div class="card pub_image ">
                             <div class="card-header">
@@ -91,7 +90,7 @@
 
                 </div>
 
-
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </div>

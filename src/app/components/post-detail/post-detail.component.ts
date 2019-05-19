@@ -66,18 +66,18 @@ export class PostDetailComponent implements OnInit {
         this.getPost(this.id);
          this.contenido_post  =this.post.description;
       
-
+         this.comments = new Comentario(1,
+          this.identity.sub,
+          '',
+          "ACTIVAR",
+          null,
+          null,
+          1);
       
         
       });
 
-      this.comments = new Comentario(1,
-        this.identity.sub,
-        '',
-        "ACTIVAR",
-        null,
-        null,
-        1);
+    
 
     }
 
@@ -113,8 +113,7 @@ export class PostDetailComponent implements OnInit {
           this.status = 'success';
           this.status = response.status;
           //vaciar el formulario
-          this.comments = new Comentario(1, this.identity.sub,  '', 'ACTIVAR', 1, 1, 1);
-          this.getPost(this.id);
+           this.getPost(this.id);
         }
         else {
           this.status = 'error';
@@ -137,7 +136,6 @@ export class PostDetailComponent implements OnInit {
           this.verdadero=true;
           this.status = response.status;
           //vaciar el formulario
-          this.comments = new Comentario(1, this.identity.sub, '', 'ACTIVAR', 1, 1, 1);
           this.getPost(this.id);
         }
         else {

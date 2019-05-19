@@ -60,17 +60,17 @@ export class ImagenDetailComponent implements OnInit {
 
 
         this.getImagen(this.id);
-
+        this.comments = new Comentario(1,
+          this.identity.sub,
+          '',
+          "ACTIVAR",
+          1,
+          null,
+          null);
 
       });
 
-      this.comments = new Comentario(1,
-        this.identity.sub,
-        '',
-        "ACTIVAR",
-        1,
-        null,
-        null);
+      
 
     }
 
@@ -106,7 +106,7 @@ export class ImagenDetailComponent implements OnInit {
           this.status = 'success';
           this.status = response.status;
           //vaciar el formulario
-          this.comments = new Comentario(1, this.identity.sub, '', 'ACTIVAR', 1, 1, 1);
+         
           this.getImagen(this.id);
         }
         else {
@@ -130,7 +130,7 @@ export class ImagenDetailComponent implements OnInit {
           this.verdadero=true;
           this.status = response.status;
           //vaciar el formulario
-          this.comments = new Comentario(1, this.identity.sub, '', 'ACTIVAR', 1, 1, 1);
+       
           this.getImagen(this.id);
         }
         else {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routing,appRoutingProviders } from './app.routing';
+import {NgxPaginationModule} from 'ngx-pagination'; //para la pagiancion
 
 //subir imagenes
 import { AngularFileUploaderModule } from "angular-file-uploader";
@@ -51,7 +52,8 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
     FormsModule,
     HttpClientModule,
     AngularFileUploaderModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxPaginationModule
   ],
   providers: [
     appRoutingProviders

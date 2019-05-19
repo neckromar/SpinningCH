@@ -28,7 +28,7 @@
             <hr>
             <div class="col-sm-4" id='comments-list'>
                 <h4>Comentarios</h4>
-                <div class="card card-default video-data" *ngFor="let comentario of comentarios">
+                <div class="card card-default video-data" *ngFor="let comentario of comentarios | paginate: { itemsPerPage: 2, currentPage: p }">
 
                     <div class="card-header">
                         {{comentario.usercomentario.name }} {{comentario.usercomentario.surname }}
@@ -114,6 +114,7 @@
                     </div>
 
                 </div>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 <br>
                 <br><br>
 
