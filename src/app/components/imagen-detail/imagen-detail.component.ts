@@ -10,10 +10,13 @@ import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../../models/comentario';
 import { ComentarioService } from '../../services/comentario.service';
 
+import { Log} from '../../models/log';
+import { LogService } from '../../services/log.service';
+
 @Component({
   selector: 'app-imagen-detail',
   templateUrl: './imagen-detail.component.html',
-  providers: [UserService, ImagenService, ComentarioService]
+  providers: [UserService, ImagenService, ComentarioService,LogService]
 })
 export class ImagenDetailComponent implements OnInit {
   public title: string;
@@ -28,12 +31,15 @@ export class ImagenDetailComponent implements OnInit {
   public comments: Comentario;
   public id;
   public verdadero:Boolean;
+  public log: Log;
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
     private _imagenService: ImagenService,
     private _comentarioService: ComentarioService,
+    private _logService: LogService,
     private http: HttpClient
   ) {
 
@@ -68,6 +74,7 @@ export class ImagenDetailComponent implements OnInit {
           null,
           null);
 
+       
       });
 
       
@@ -107,6 +114,7 @@ export class ImagenDetailComponent implements OnInit {
           this.status = response.status;
           //vaciar el formulario
          
+        
           this.getImagen(this.id);
         }
         else {
@@ -131,6 +139,7 @@ export class ImagenDetailComponent implements OnInit {
           this.status = response.status;
           //vaciar el formulario
        
+
           this.getImagen(this.id);
         }
         else {
@@ -172,6 +181,7 @@ export class ImagenDetailComponent implements OnInit {
         if (response.status == 'success') {
 
           this.status = 'success';
+
           this.getImagen(id);
         }
         else {

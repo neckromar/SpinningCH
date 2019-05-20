@@ -8,10 +8,13 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { GLOBAL} from '../../services/global';
 import { HttpClient } from '@angular/common/http';
 
+import { Log} from '../../models/log';
+import { LogService } from '../../services/log.service';
+
 @Component({
   selector: 'app-imagen-default',
   templateUrl: './imagen-default.component.html',
-  providers: [UserService,ImagenService]
+  providers: [UserService,ImagenService,LogService]
 })
 export class ImagenDefaultComponent implements OnInit {
   public title: string;
@@ -22,7 +25,7 @@ export class ImagenDefaultComponent implements OnInit {
   public selectedFile: File = null;
   public url;
   public imagenes: Array<Imagen>;
-
+  public log: Log;
 
   
   constructor(
@@ -30,6 +33,7 @@ export class ImagenDefaultComponent implements OnInit {
     private _router: Router,
     private _userService: UserService,
     private _imagenService: ImagenService,
+    private _logService: LogService,
     private http: HttpClient
   ) {
     this.title = 'Añade una imagen!';
@@ -69,6 +73,8 @@ response => {
     if(response.status == 'success')
         {
             this.status = response.status;
+
+            
             //vaciar el formulario
             this.imagen= new Imagen(1,1,'','','');
             

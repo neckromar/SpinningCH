@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { Imagen} from '../../models/imagen';
+
+import { Log} from '../../models/log';
+import { LogService } from '../../services/log.service';
+
 import { UserService } from '../../services/user.service';
 import { ImagenService } from '../../services/Imagen.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -11,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-imagen-new',
   templateUrl: './imagen-new.component.html',
-  providers: [UserService,ImagenService]
+  providers: [UserService,ImagenService,LogService]
 })
 export class ImagenNewComponent implements OnInit {
   public title: string;
@@ -21,6 +25,7 @@ export class ImagenNewComponent implements OnInit {
   public status: string;
   public selectedFile: File = null;
   public url;
+  public log: Log;
   
   public afuConfig = {
     multiple: false,
@@ -44,6 +49,7 @@ export class ImagenNewComponent implements OnInit {
     private _router: Router,
     private _userService: UserService,
     private _imagenService: ImagenService,
+    private _logService: LogService,
     private http: HttpClient
   ) {
     this.title = 'Añade una imagen!';
@@ -80,9 +86,10 @@ response => {
         {
           this.status='success';
             this.status = response.status;
-            //vaciar el formulario
-            this.imagen= new Imagen(1,1,'','','');
-            
+
+          //vaciar el formulario
+          this.imagen= new Imagen(1,1,'','','');
+
         }   
         else{
                 this.status='error';
