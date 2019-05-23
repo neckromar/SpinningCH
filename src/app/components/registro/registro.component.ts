@@ -19,7 +19,7 @@ constructor(
     private _userService: UserService
 ){
     this.title = 'Registrate';
-    this.user= new User(1,'ROLE_USER','','','','','');
+    this.user= new User(1,3,'','','','','');
 
 
 }
@@ -35,7 +35,7 @@ onSubmit(form){
             {
                 this.status = response.status;
                 //vaciar el formulario
-                this.user= new User(1,'ROLE_USER','','','','','');
+                this.user= new User(1,3,'','','','','');
                 form.reset();
             }   
             else{

@@ -1,0 +1,29 @@
+<section class="g-pos-rel text-center">
+    <!-- Page Content -->
+    <div class="container">
+        <div class="col-md-8 " id="content">
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Role_id</th>
+                </tr>
+                <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role_id}}</td>
+                 
+                </tr>
+
+
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+
+</section>

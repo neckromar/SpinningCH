@@ -6,7 +6,7 @@ import { GLOBAL } from './global';
 import { User } from '../models/user';
 
 @Injectable()
-export class UserService{
+export class AdminService{
     public url: string;
     public identity;
     public token;
@@ -17,18 +17,7 @@ export class UserService{
          this.url = GLOBAL.url;
     }
 
-    pruebas(){
-        return "Hola mundo";
-    }
-    
-    register(user): Observable<any>{
-        let json = JSON.stringify(user);
-        let params = 'json='+json;
-
-        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-        return this._http.post(this.url+'register',params, {headers: headers} );
-    }
+   
 
     signup(user,gettoken =null): Observable<any>{
         if(gettoken !=null){
@@ -39,7 +28,7 @@ export class UserService{
 
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this._http.post(this.url+'login',params, {headers: headers} );
+        return this._http.post(this.url+'admin/login',params, {headers: headers} );
     }
 
     getIdentity(){
@@ -65,7 +54,23 @@ export class UserService{
         return this.token
     }
 
-    
+    getLogs(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/logs',{headers: headers});   
+    }
+    getUsers_inactived(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/users_inactived',{headers: headers});   
+    }
+    getUsers_actived(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/users_actived',{headers: headers});   
+    }
+    getUser(id): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/user/'+id ,{headers: headers});   
+    }
+  
     update(token, identity, id): Observable<any>{
 
         let json= JSON.stringify(identity);
@@ -75,15 +80,12 @@ export class UserService{
         let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
         .set('Authorization',token);
 
-        return this._http.put(this.url+'user/'+id,params,{headers:headers});
+        return this._http.put(this.url+'admin/dashboard/user/update/'+id,params,{headers:headers});
 
     }
 
-    delete(token,id): Observable<any>{
-        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
-        .set('Authorization',token);
-
-        return this._http.delete(this.url+'user/'+id,{headers:headers});
+    getUsers_deleted(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/users_deleted',{headers: headers});   
     }
-
 }

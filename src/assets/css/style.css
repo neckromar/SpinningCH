@@ -21,7 +21,7 @@ h4,.h4{font-size:18px}[class^="flaticon-"]:before,[class*=" flaticon-"]:before,[
 .header_area{width:100%;z-index:99;transition:background 0.4s, all 0.3s linear}
 .header_area .navbar-right{min-width:200px;text-align:right}
 @media (max-width: 991px){.header_area .navbar-right{margin:20px 0}}
-.header_area .navbar-brand{margin-right:30px;padding:0}
+.header_area .navbar-brand{margin-right:30px;}
 .header_area .navbar-social{min-width:95px;float:right}
 .header_area .navbar-social li{margin-right:12px}
 .header_area .navbar-social li i,.header_area .navbar-social li span{font-size:13px;color:#242429}

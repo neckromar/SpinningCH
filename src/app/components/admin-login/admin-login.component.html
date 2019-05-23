@@ -1,0 +1,80 @@
+<section class="g-pos-rel text-center">
+
+    <div  data-autoplay="true" data-infinite="true"
+        data-fade="true" data-speed="5000">
+        <div class="js-slide g-bg-img-hero g-height-100vh "
+            style="background-image: url('assets/images/usuarios/pescadortumbado.jpg');">
+
+            <div class="container">
+
+                <div class="u-bg-overlay__inner g-absolute-centered w-100">
+                    <div class="container text-center g-color-white">
+
+                        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginform)" class="col-md-10">
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-sm-8 registrocuadro">
+
+                                            <div class="header header-primary text-center">
+                                                <h4>{{ title }}</h4>
+                                            </div>
+
+                                            <div class="form-group g-mb-20" *ngIf="status == 'success' ">
+                                                <div class="alert alert-success">
+                                                    Te has identificado correctamente!
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group g-mb-20 " *ngIf="status == 'error' ">
+                                                <div class="alert alert-danger">
+                                                    Error en el login , si no eres ADMIN , no deberías de estar aqui!
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group g-mb-20 input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">email</i>
+                                                </span>
+                                                <input type="email" class="form-control  g-brd-white inputstyle"
+                                                    name="email" #email="ngModel" [(ngModel)]="user.email" required
+                                                    placeholder="Email" />
+
+                                            </div>
+                                            <p *ngIf="!email.valid && email.touched" class="text-danger mt-1">
+                                                <strong> El email es obligatorio</strong>
+                                            </p>
+
+
+                                            <div class="form-group g-mb-20 input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">vpn_key</i>
+                                                </span>
+                                                <input type="password" class="form-control  g-brd-white inputstyle"
+                                                    name="password" #password="ngModel" [(ngModel)]="user.password"
+                                                    required placeholder="Password" />
+                                            </div>
+                                            <p *ngIf="!password.valid && password.touched" class="text-danger mt-1">
+                                                <strong> La password es obligatoria</strong>
+                                            </p>
+
+                                            <button type="submit" class="btn btn-lg btn-success"
+                                                [disabled]="!loginForm.form.valid">Ingresar </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

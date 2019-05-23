@@ -17,6 +17,12 @@ import { VideoDetailComponent } from './components/video-detail/video-detail.com
 import { PostNewComponent } from './components/post-new/post-new.component';
 import { PostDefaultComponent } from './components/post-default/post-default.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminLogsComponent } from './components/admin-logs/admin-logs.component';
+import { AdminUsersInactivedComponent } from './components/admin-users-inactived/admin-users-inactived.component';
+import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
+import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -34,7 +40,16 @@ const appRoutes: Routes =[
     {path:'videos/:id', component: VideoDetailComponent},
     {path:'posts', component: PostNewComponent},
     {path:'posts/listado', component: PostDefaultComponent},
-    {path:'posts/:id', component: PostDetailComponent}
+    {path:'posts/:id', component: PostDetailComponent},
+    {path:'admin',  component: AdminLoginComponent},
+    {path:'admin/dashboard',  component: AdminDashboardComponent},
+    {path:'admin/dashboard/logs',  component: AdminLogsComponent},
+    {path:'admin/dashboard/users/inactived',  component: AdminUsersInactivedComponent},
+    {path:'admin/dashboard/users/actived',  component: AdminUsersActivedComponent},
+    {path:'admin/dashboard/users/deleted',  component: AdminUsersDeletedComponent}
+    
+    
+    
 ];
 
 export const appRoutingProviders: any[] = [];

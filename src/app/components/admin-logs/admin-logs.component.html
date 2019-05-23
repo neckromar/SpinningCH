@@ -1,0 +1,20 @@
+<section class="g-pos-rel text-center">
+ <!-- Page Content -->
+ <div class="container">
+<div class="col-md-8 " id="content">
+  <table  >
+     
+    <tr>
+        <th>LOG</th>
+    </tr>
+    <tr *ngFor="let log of logs | paginate: { itemsPerPage: 10, currentPage: p }">
+      <td>{{log.nombre}}</td>
+    </tr>
+   
+
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+
+</section>

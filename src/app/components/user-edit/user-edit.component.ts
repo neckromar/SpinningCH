@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
     this.identity = this._userService.getIdentity();
    
     this.user= new User(this.identity.sub,
-      'ROLE_USER',
+      3,
       this.identity.name,
       this.identity.surname,
       '',

@@ -41,7 +41,7 @@
                         <!-- boton para editar comentario-->
                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                             [attr.data-target]="'#myModaledit'+ comentario.id" (click)="getComentario(comentario.id)"
-                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Editar</button>
+                            *ngIf="comentario.user_id == identity.sub || identity.role_id == 1">Editar</button>
 
                         <!-- Modal -->
                         <div id="{{'myModaledit'+comentario.id}}" class="modal fade" role="dialog">
@@ -78,11 +78,12 @@
                             </div>
                         </div>
 
+                        
                         <!-- boton para borrar-->
                         <!-- Trigger the modal with a button -->
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                             [attr.data-target]="'#myModal'+ comentario.id"
-                            *ngIf="comentario.user_id == identity.sub || identity.role == 'ROLE_ADMIN'">Borrar</button>
+                            *ngIf="comentario.user_id == identity.sub || identity.role_id == 1">Borrar</button>
 
 
                         <!-- Modal -->

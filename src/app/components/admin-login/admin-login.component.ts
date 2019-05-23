@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  providers: [UserService]
+  selector: 'adminlogin',
+  templateUrl: './admin-login.component.html',
+  providers: [UserService,AdminService]
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   public title: string;
   public user: User;
   public token;
@@ -17,37 +18,48 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
+    private _adminService: AdminService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {
     this.title = 'Identificate';
-    this.user = new User(1, 3, '', '', '','', '');
-
+    this.user = new User(1, 1, '', '', '','', '');
+    this.token = this._userService.getToken();
+    this.identity = this._userService.getIdentity();
   }
   ngOnInit() {
     this.logout();
+    if(this.identity.role_id != 1){
+      this._router.navigate(['home']);
+    }else if(this.identity.role_id == 1){
+      this._router.navigate(['admin/dashboard']);
+    }
   }
 
   onSubmit(form) {
-    this._userService.signup(this.user).subscribe(
+    this._adminService.signup(this.user).subscribe(
       response => {
         //token
 
         //probar si se ha identificado bien y dar un error
-        if (response.status != 'error') {
+        if (response.status != 'error'  ) {
           this.status='success';
           this.token = response;
           localStorage.setItem('token', this.token);
 
 
           //objeto usuario identificado
-          this._userService.signup(this.user, true).subscribe(
+          this._adminService.signup(this.user, true).subscribe(
             response => {
+            
               this.identity = response;
-              localStorage.setItem('identity', JSON.stringify(this.identity));
+            
+                localStorage.setItem('identity', JSON.stringify(this.identity));
 
-              // redireccion cuando el login termine
-              this._router.navigate(['home']);
+                // redireccion cuando el login termine
+                this._router.navigate(['admin/dashboard']);
+              
+            
             },
             error => {
               console.log(<any>error);

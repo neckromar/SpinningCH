@@ -1,0 +1,464 @@
+<section class="g-pos-rel text-center">
+  <!-- Page Content -->
+  <div class="container">
+    <div class="col-md-12 " id="content">
+      <h2>ADMINS</h2>
+      <table>
+
+        <tr>
+          <th>Nombre</th>
+        </tr>
+        <tr *ngFor="let user of users[0] | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{user.name}}</td>
+          <td>
+            <!-- boton para editar comentario-->
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModaledit'+ user.id" (click)="getUser(user.id)"
+              *ngIf="identity.role_id == 1 ">Editar</button>
+
+            <!-- Modal -->
+            <div id="{{'myModaledit'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer editar este comentario ?
+                    </p>
+
+                    <form #comenteditForm="ngForm" (ngSubmit)="onEdit(comenteditForm)" class="col-sm-10">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="row">
+                            <div class="col-lg-8 registrocuadro" style="   margin-top: 10%; ">
+
+                              <div class="form-group g-mb-20" *ngIf="status == 'success' ">
+                                <div class="alert alert-success">
+                                  Te has modificado correctamente
+                                </div>
+                              </div>
+
+                              <div class="form-group g-mb-20 " *ngIf="status == 'error' ">
+                                <div class="alert alert-danger">
+                                  Error al modificar
+                                </div>
+                              </div>
+
+
+                              <div class="form-group g-mb-20 input-group">
+
+                                <span class="input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white inputstyle "
+                                  name="name" #name="ngModel" [(ngModel)]="user.name" required placeholder="Nombre" />
+
+                              </div>
+                              <p *ngIf="!name.valid && name.touched" class="text-danger mt-1">
+                                <strong>El nombre es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="  input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white  inputstyle"
+                                  name="surname" #surname="ngModel" [(ngModel)]="user.surname" required
+                                  placeholder="Appellidos" />
+                              </div>
+                              <p *ngIf="!surname.valid && surname.touched" class="text-danger mt-1">
+                                <strong> Los apellidos son obligatorios</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="email" class="form-control  g-brd-white inputstyle" name="email"
+                                  #email="ngModel" [(ngModel)]="user.email" required placeholder="Email" />
+
+                              </div>
+                              <p *ngIf="!email.valid && email.touched" class="text-danger mt-1">
+                                <strong> El email es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">role</i>
+                                </span>
+                                <input type="text" class="form-control  g-brd-white inputstyle" name="role_id"
+                                  #role_id="ngModel" [(ngModel)]="user.role_id" required placeholder="Role_id" />
+
+                              </div>
+                              <p *ngIf="!role_id.valid && role_id.touched" class="text-danger mt-1">
+                                <strong> El role_id es obligatorio</strong>
+                              </p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-warning" data-dismiss="modal"
+                      (click)="onEdit(comenteditForm)">Editar</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </td>
+          <td>
+
+            <!-- boton para borrar-->
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModal'+ user.id"
+              *ngIf="identity.role_id == 1 && user.id != identity.sub">Borrar</button>
+
+
+            <!-- Modal -->
+            <div id="{{'myModal'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer borrar este user ? SE BORRARÁ PERMANENTEMENTE!!
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-danger" data-dismiss="modal"
+                      (click)="deleteUser(user.id)">BORRAR</a>
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </td>
+        </tr>
+
+
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+
+    <div class="col-md-12 " id="content">
+      <h2>ACTIVADOS</h2>
+      <table>
+
+        <tr>
+          <th>Nombre</th>
+        </tr>
+        <tr *ngFor="let user of users[2] | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{user.name}}</td>
+          <td>
+            <!-- boton para editar comentario-->
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModaledit'+ user.id" (click)="getUser(user.id)"
+              *ngIf="identity.role_id == 1 ">Editar</button>
+
+            <!-- Modal -->
+            <div id="{{'myModaledit'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer editar este USUARIO ?
+                    </p>
+
+                    <form #userEdit="ngForm" (ngSubmit)="onEdit(userEdit)" class="col-sm-10">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="row">
+                            <div class="col-lg-8 " style="   margin-top: 10%; ">
+
+                              <div class="form-group g-mb-20" *ngIf="status == 'success' ">
+                                <div class="alert alert-success">
+                                  Te has modificado correctamente
+                                </div>
+                              </div>
+
+                              <div class="form-group g-mb-20 " *ngIf="status == 'error' ">
+                                <div class="alert alert-danger">
+                                  Error al modificar el usuario
+                                </div>
+                              </div>
+
+
+                              <div class="form-group g-mb-20 input-group">
+
+                                <span class="input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white inputstyle "
+                                  name="name" #name="ngModel" [(ngModel)]="user.name" required placeholder="Nombre" />
+
+                              </div>
+                              <p *ngIf="!name.valid && name.touched" class="text-danger mt-1">
+                                <strong>El nombre es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="  input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white  inputstyle"
+                                  name="surname" #surname="ngModel" [(ngModel)]="user.surname" required
+                                  placeholder="Appellidos" />
+                              </div>
+                              <p *ngIf="!surname.valid && surname.touched" class="text-danger mt-1">
+                                <strong> Los apellidos son obligatorios</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="email" class="form-control  g-brd-white inputstyle" name="email"
+                                  #email="ngModel" [(ngModel)]="user.email" required placeholder="Email" />
+
+                              </div>
+                              <p *ngIf="!email.valid && email.touched" class="text-danger mt-1">
+                                <strong> El email es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="text" class="form-control  g-brd-white inputstyle" name="role_id"
+                                  #role_id="ngModel" [(ngModel)]="user.role_id" required placeholder="Role_id" />
+
+                              </div>
+                              <p *ngIf="!role_id.valid && role_id.touched" class="text-danger mt-1">
+                                <strong> El role_id es obligatorio</strong>
+                              </p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-warning" data-dismiss="modal"
+                      (click)="onEdit(userEdit)">Editar</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </td>
+          <td>
+
+            <!-- boton para borrar-->
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModal'+ user.id" *ngIf="identity.role_id == 1">Borrar</button>
+
+
+            <!-- Modal -->
+            <div id="{{'myModal'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer borrar este user ? SE BORRARÁ PERMANENTEMENTE!!
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-danger" data-dismiss="modal"
+                      (click)="deleteUser(user.id)">BORRAR</a>
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </td>
+        </tr>
+
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+
+    <div class="col-md-12 " id="content">
+      <h2>SOCIOS</h2>
+      <table>
+
+        <tr>
+          <th>Nombre</th>
+        </tr>
+
+        <tr *ngFor="let user of users[1] | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{user.name}}</td>
+          <td>
+            <!-- boton para editar comentario-->
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModaledit'+ user.id" (click)="getUser(user.id)"
+              *ngIf="identity.role_id == 1 ">Editar</button>
+
+            <!-- Modal -->
+            <div id="{{'myModaledit'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer editar este usuario ?
+                    </p>
+
+                    <form #comenteditForm="ngForm" (ngSubmit)="onEdit(comenteditForm)" class="col-sm-10">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="row">
+                            <div class="col-lg-8 registrocuadro" style="   margin-top: 10%; ">
+
+                              <div class="form-group g-mb-20" *ngIf="status == 'success' ">
+                                <div class="alert alert-success">
+                                  Te has modificado correctamente
+                                </div>
+                              </div>
+
+                              <div class="form-group g-mb-20 " *ngIf="status == 'error' ">
+                                <div class="alert alert-danger">
+                                  Error Al actualizar un usuario
+                                </div>
+                              </div>
+
+
+                              <div class="form-group g-mb-20 input-group">
+
+                                <span class="input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white inputstyle "
+                                  name="name" #name="ngModel" [(ngModel)]="user.name" required placeholder="Nombre" />
+
+                              </div>
+                              <p *ngIf="!name.valid && name.touched" class="text-danger mt-1">
+                                <strong>El nombre es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="  input-group-addon">
+                                  <i class="material-icons">account_box</i>
+                                </span>
+                                <input type="text" class="form-control g-font-size-default  g-brd-white  inputstyle"
+                                  name="surname" #surname="ngModel" [(ngModel)]="user.surname" required
+                                  placeholder="Appellidos" />
+                              </div>
+                              <p *ngIf="!surname.valid && surname.touched" class="text-danger mt-1">
+                                <strong> Los apellidos son obligatorios</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="email" class="form-control  g-brd-white inputstyle" name="email"
+                                  #email="ngModel" [(ngModel)]="user.email" required placeholder="Email" />
+
+                              </div>
+                              <p *ngIf="!email.valid && email.touched" class="text-danger mt-1">
+                                <strong> El email es obligatorio</strong>
+                              </p>
+
+                              <div class="form-group g-mb-20 input-group">
+                                <span class="input-group-addon">
+                                  <i class="material-icons">email</i>
+                                </span>
+                                <input type="text" class="form-control  g-brd-white inputstyle" name="role_id"
+                                  #role_id="ngModel" [(ngModel)]="user.role_id" required placeholder="Role_id" />
+
+                              </div>
+                              <p *ngIf="!role_id.valid && role_id.touched" class="text-danger mt-1">
+                                <strong> El role_id es obligatorio</strong>
+                              </p>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-warning" data-dismiss="modal"
+                      (click)="onEdit(comenteditForm)">Editar</a>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </td>
+          <td>
+
+            <!-- boton para borrar-->
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+              [attr.data-target]="'#myModal'+ user.id" *ngIf="identity.role_id == 1">Borrar</button>
+
+
+            <!-- Modal -->
+            <div id="{{'myModal'+user.id}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Estas seguro de querrer borrar este user ? SE BORRARÁ PERMANENTEMENTE!!
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="btn btn-danger" data-dismiss="modal"
+                      (click)="deleteUser(user.id)">BORRAR</a>
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </td>
+        </tr>
+
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+  </div>
+
+</section>
