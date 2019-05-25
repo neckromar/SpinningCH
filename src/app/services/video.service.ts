@@ -44,4 +44,16 @@ export class VideoService{
 
         return this._http.delete(this.url+'videos/'+id,{headers:headers});
     }
+    update(token, identity, id): Observable<any>{
+
+        let json= JSON.stringify(identity);
+        let params = "json="+json;
+
+        
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+        .set('Authorization',token);
+
+        return this._http.put(this.url+'videos/'+id,params,{headers:headers});
+
+    }
 }

@@ -33,6 +33,8 @@ import { AdminLogsComponent } from './components/admin-logs/admin-logs.component
 import { AdminUsersInactivedComponent } from './components/admin-users-inactived/admin-users-inactived.component';
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
+import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
+
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { AdminUsersDeletedComponent } from './components/admin-users-deleted/adm
     AdminLogsComponent,
     AdminUsersInactivedComponent,
     AdminUsersActivedComponent,
-    AdminUsersDeletedComponent
+    AdminUsersDeletedComponent,
+    AdminContenidoActivarComponent
+    
   ],
   imports: [
     BrowserModule,

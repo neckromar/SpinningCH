@@ -88,4 +88,11 @@ export class AdminService{
         let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         return this._http.get(this.url+ 'admin/dashboard/users_deleted',{headers: headers});   
     }
+
+    getContenido_Activar(): Observable<any>{
+        let headers= new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        return this._http.get(this.url+ 'admin/dashboard/contenido_activar',{headers: headers});   
+    }
+
+    
 }

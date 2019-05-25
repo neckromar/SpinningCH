@@ -2,20 +2,21 @@
 
     <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
         <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
-        style="background-image: url('assets/images/usuarios/prueba2.jpg');">
+            style="background-image: url('assets/images/usuarios/prueba2.jpg');">
 
             <div class="container ">
 
                 <div class="row ">
 
-                    <div class="col-md-4 alejadodeltop " *ngFor="let video of videos | paginate: { itemsPerPage: 3, currentPage: p }">
-                            
-                        
+                    <div class="col-md-4 alejadodeltop "
+                        *ngFor="let video of videos | paginate: { itemsPerPage: 3, currentPage: p }">
+
+
                         <div class=" g-mb-20" *ngIf="status == 'success' ">
-                                    <div class="alert alert-success">
-                                       La operacion se ha realizado correctamente
-                                    </div>
-                         </div>
+                            <div class="alert alert-success">
+                                La operacion se ha realizado correctamente
+                            </div>
+                        </div>
 
                         <div class="card pub_image ">
                             <div class="card-header">
@@ -25,44 +26,121 @@
                                 <div class="data-user">
                                     {{video.user.name }} {{video.user.surname}}
                                     <div *ngIf="video.user_id == identity.sub || identity.role_id == 1"
-                                            style="align-content: right ;">
+                                        style="align-content: right ;">
 
+                                        <!-- boton para editar comentario-->
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                            [attr.data-target]="'#myModaledit'+ video.id"
+                                            (click)="getVideo(video.id)"
+                                            *ngIf=" identity.role_id == 1 ">Actualizar campos</button>
 
-                                            <!-- boton para borrar-->
-                                            <!-- Trigger the modal with a button -->
-                                            <a type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                [attr.data-target]="'#myModal'+ video.id">X</a>
+                                        <!-- Modal -->
+                                        <div id="{{'myModaledit'+video.id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
 
-
-                                            <!-- Modal -->
-                                            <div id="{{'myModal'+video.id}}" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Estas seguro de querrer borrar este video ? SE BORRARÁ
-                                                                PERMANENTEMENTE!!
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a type="button" class="btn btn-danger" data-dismiss="modal"
-                                                                (click)="deleteVideo(video.id)">BORRAR</a>
-
-                                                            <button type="button" class="btn btn-success"
-                                                                data-dismiss="modal">Close</button>
-                                                        </div>
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
                                                     </div>
+                                                    <div class="modal-body">
+                                                        <p>Estas seguro de modificar los campos de este video?
+                                                        </p>
+                                                        <form #editarVideoForm="ngForm" (ngSubmit)="onEditVideo(editarVideoForm)"
+                                                        class="col-lg-10"  style="margin-left:20%;">
+                                                        <div class="row">
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-lg-10 registrocuadro">
+                            
+                                                                        <div class="form-group g-mb-20 input-group">
+                            
+                                                                            <span class="input-group-addon">
+                                                                                <i class="material-icons">title</i>
+                                                                            </span>
+                                                                            <input type="text"
+                                                                                class="form-control g-font-size-default  g-brd-white inputstyle "
+                                                                                name="title" #title="ngModel"
+                                                                                [(ngModel)]="video.title" required
+                                                                                placeholder="Title" />
+                            
+                                                                        </div>
+                                                                        <p *ngIf="!title.valid && title.touched"
+                                                                            class="text-danger mt-1">
+                                                                            <strong>El titulo es necesario</strong>
+                                                                        </p>
+                            
+                                                                        <div class="form-group g-mb-20 input-group">
+                            
+                                                                            <span class="input-group-addon">
+                                                                                <i class="material-icons">description</i>
+                                                                            </span>
+                                                                            <input type="text"
+                                                                                class="form-control g-font-size-default  g-brd-white inputstyle "
+                                                                                name="description" #description="ngModel"
+                                                                                [(ngModel)]="video.description" required
+                                                                                placeholder="Description" />
+                            
+                                                                        </div>
+                                                                        <p *ngIf="!description.valid && description.touched"
+                                                                            class="text-danger mt-1">
+                                                                            <strong>La descripcion es necesaria</strong>
+                                                                        </p>
+                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                                            (click)="onEditVideo(editarVideoForm)">Modificar</a>
+                                                        <button type="button" class="btn btn-success"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
-                                   <br>
-                                   <h3>Title:{{video.title}}</h3>
+
+                                        <!-- boton para borrar-->
+                                        <!-- Trigger the modal with a button -->
+                                        <a type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            [attr.data-target]="'#myModal'+ video.id">X</a>
+
+
+                                        <!-- Modal -->
+                                        <div id="{{'myModal'+video.id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Estas seguro de querrer borrar este video ? SE BORRARÁ
+                                                            PERMANENTEMENTE!!
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                                            (click)="deleteVideo(video.id)">BORRAR</a>
+
+                                                        <button type="button" class="btn btn-success"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <h3>Title:{{video.title}}</h3>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -72,7 +150,7 @@
                                     </div>
                                 </div>
                                 <div class="description">
-                                 
+
                                     {{video.description}}
                                 </div>
                                 <div>

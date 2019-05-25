@@ -32,7 +32,7 @@ export class AdminLogsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.identity.role_id != 1){
+    if(this.identity == null || this.identity.role_id != 1  ){
       this._router.navigate(['home']);
     }else if(this.identity.role_id == 1){
      

@@ -23,6 +23,7 @@ import { AdminLogsComponent } from './components/admin-logs/admin-logs.component
 import { AdminUsersInactivedComponent } from './components/admin-users-inactived/admin-users-inactived.component';
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
+import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -32,21 +33,26 @@ const appRoutes: Routes =[
     {path:'logout/:sure', component: LoginComponent},
     {path:'home', component:DefaultComponent},
     {path:'update-user',component:UserEditComponent},
+    
     {path:'imagenes', component: ImagenNewComponent},
     {path:'imagenes/listado', component: ImagenDefaultComponent},
     {path:'imagenes/:id', component: ImagenDetailComponent},
+
     {path:'videos', component: VideoNewComponent},
     {path:'videos/listado', component: VideoDefaultComponent},
     {path:'videos/:id', component: VideoDetailComponent},
+
     {path:'posts', component: PostNewComponent},
     {path:'posts/listado', component: PostDefaultComponent},
     {path:'posts/:id', component: PostDetailComponent},
+
     {path:'admin',  component: AdminLoginComponent},
     {path:'admin/dashboard',  component: AdminDashboardComponent},
     {path:'admin/dashboard/logs',  component: AdminLogsComponent},
     {path:'admin/dashboard/users/inactived',  component: AdminUsersInactivedComponent},
     {path:'admin/dashboard/users/actived',  component: AdminUsersActivedComponent},
-    {path:'admin/dashboard/users/deleted',  component: AdminUsersDeletedComponent}
+    {path:'admin/dashboard/users/deleted',  component: AdminUsersDeletedComponent},
+    {path:'admin/dashboard/contenidos/activar',  component: AdminContenidoActivarComponent}
     
     
     

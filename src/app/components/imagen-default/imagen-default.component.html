@@ -2,20 +2,21 @@
 
     <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
         <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
-        style="background-image: url('assets/images/usuarios/prueba2.jpg');">
+            style="background-image: url('assets/images/usuarios/prueba2.jpg');">
 
             <div class="container ">
                 <div class="row ">
 
-                   
 
-                    <div class="col-md-4 alejadodeltop " *ngFor="let imagen of imagenes | paginate: { itemsPerPage: 3, currentPage: p }">
-                            
-                        
+
+                    <div class="col-md-4 alejadodeltop "
+                        *ngFor="let imagen of imagenes | paginate: { itemsPerPage: 3, currentPage: p }">
+
+
                         <div class=" g-mb-20" *ngIf="status == 'success' ">
-                                    <div class="alert alert-success">
-                                       La operacion se ha realizado correctamente
-                                    </div>
+                            <div class="alert alert-success">
+                                La operacion se ha realizado correctamente
+                            </div>
                         </div>
 
                         <div class="card pub_image ">
@@ -25,9 +26,75 @@
                                 </div>
                                 <div class="data-user">
                                     {{imagen.user.name}}
-                                    <div *ngIf="imagen.user_id == identity.sub || identity.role == 'ROLE_ADMIN'"
+                                    <div *ngIf="imagen.user_id == identity.sub || identity.role_id == 1 "
                                         style="align-content: right ;">
 
+                                        <!-- boton para editar comentario-->
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                            [attr.data-target]="'#myModaledit'+ imagen.id"
+                                            (click)="getImagen(imagen.id)">Cambiar descripcion</button>
+
+                                        <!-- Modal -->
+                                        <div id="{{'myModaledit'+imagen.id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Estas seguro de querrer modificar esta imagen?
+                                                        </p>
+                                                        <form #imageneditForm="ngForm"
+                                                            (ngSubmit)="onEdit(imageneditForm)" class="col-lg-10"
+                                                            style="margin-left:30%;">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-8 registrocuadro"
+                                                                            style="   margin-top: 10%; ">
+
+                                                                            <div class="form-group g-mb-20 input-group">
+
+                                                                                <span class="input-group-addon">
+                                                                                    <i
+                                                                                        class="material-icons">description</i>
+                                                                                </span>
+                                                                                <input type="text"
+                                                                                    class="form-control g-font-size-default  g-brd-white inputstyle "
+                                                                                    name="description"
+                                                                                    #description="ngModel"
+                                                                                    [(ngModel)]="imagen.description"
+                                                                                    required
+                                                                                    placeholder="Description" />
+
+                                                                            </div>
+                                                                            <p *ngIf="!description.valid && description.touched"
+                                                                                class="text-danger mt-1">
+                                                                                <strong>La descripcion es
+                                                                                    necesaria</strong>
+                                                                            </p>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                                            (click)="onEditImagen(imageneditForm)">Activar</a>
+                                                        <button type="button" class="btn btn-success"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
 
                                         <!-- boton para borrar-->
                                         <!-- Trigger the modal with a button -->
@@ -61,6 +128,10 @@
 
                                             </div>
                                         </div>
+
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +156,7 @@
                         </div>
 
                     </div>
-                   
+
 
                 </div>
 

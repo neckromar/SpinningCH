@@ -19,6 +19,7 @@ export class PostDefaultComponent implements OnInit {
   public title: string;
   public token;
   public identity;
+  public post : Post;
   public posts : Post;
   public status: string;
   public selectedFile: File = null;
@@ -58,6 +59,9 @@ export class PostDefaultComponent implements OnInit {
   }
    
   }
+
+
+
 
 getPosts() {
     this._postService.getPosts().subscribe(

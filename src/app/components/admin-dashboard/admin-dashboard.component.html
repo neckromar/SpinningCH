@@ -1,122 +1,143 @@
 <section class="g-pos-rel text-center">
 
-  
 
-    <!-- Page Content -->
-    <div class="container">
-      <div class="row">
 
-        <!-- LISTADO DE USUARIOS ACTIVOS -->
-        <div class="col-xl-2 col-md-4">
-          <div class="card">
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
 
-            <img src="assets/images/admin/activos.svg" class="card-img-top" alt="..." >
+      <!-- LISTADO DE USUARIOS ACTIVOS -->
+      <div class="col-xl-4 col-md-4">
+        <div class="card">
 
-            <div class="card-body text-center">
+          <img src="assets/images/admin/activos.svg" class="card-img-top" alt="...">
 
-              <h5 class="card-title mb-0">Listado de usuarios activos</h5>
-              <br>
-              <div class="card-text text-black-50">
+          <div class="card-body text-center">
 
-                <a [routerLink]="['/admin/dashboard/users/actived']" > <i class="material-icons">list</i> Listado </a>
+            <h5 class="card-title mb-0">Listado de usuarios activos</h5>
+            <br>
+            <div class="card-text text-black-50">
 
-              </div>
-              <br>
-              <div class="card-text text-black-50">
+              <a [routerLink]="['/admin/dashboard/users/actived']"> <i class="material-icons">list</i> Listado </a>
 
-                <a href="#"><i class="material-icons">picture_as_pdf</i>
-                  Descargar usuarios activos en PDF </a>
+            </div>
+            <br>
+            <div class="card-text text-black-50">
 
-              </div>
+              <a href="#"><i class="material-icons">picture_as_pdf</i>
+                Descargar usuarios activos en PDF </a>
+
             </div>
           </div>
         </div>
-
-
-        <!-- LISTADO DE USUARIOS INACTIVOS-->
-        <div class="col-xl-2 col-md-4 ">
-          <div class="card">
-            <img src="assets/images/admin/inactivos.svg" class="card-img-top" alt="..."   style="width: 88%;" >
-
-            <div class="card-body text-center">
-
-              <h5 class="card-title mb-0">Listado de usuarios inactivos</h5>
-              <br>
-              <div class="card-text text-black-50">
-                <a [routerLink]="['/admin/dashboard/users/inactived']" >
-                  <i class="material-icons">list</i> Listado
-                </a>
-
-              </div>
-              <br>
-              <div class="card-text text-black-50">
-                <a href="#">
-                  <i class="material-icons">picture_as_pdf</i> Descargar usuarios inactivos en PDF
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- VER LOGS-->
-        <div class="col-xl-2 col-md-4">
-          <div class="card">
-
-
-            <img src="assets/images/admin/logs.svg" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-              <h5 class="card-title mb-0">LOGS</h5>
-              <br>
-              <div class="card-text text-black-50">
-                <a [routerLink]="['/admin/dashboard/logs']"> <i class="material-icons">list</i>Ver Logs </a>
-
-              </div>
-              <br>
-              <div class="card-text text-black-50">
-                <a href="#"> <i class="material-icons">picture_as_pdf</i> Descargar Logs
-                </a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Team Member 4 -->
-        <div class="col-xl-3 col-md-4">
-          <div class="card ">
-            <img src="assets/images/admin/eliminados.svg" class="card-img-top" alt="..." style="width: 70%;margin-left: 50px;">
-
-            <div class="card-body text-center">
-              <h5 class="card-title mb-0">Ver usuarios eliminados</h5>
-              <br>
-              <div class="card-text text-black-50">
-                 
-                <a [routerLink]="['/admin/dashboard/users/deleted']"> <i class="material-icons">list</i> Usuarios eliminados
-                </a>
-
-              </div>
-              <br>
-              <div class="card-text text-black-50">
-
-                <a href="#"><i class="material-icons">picture_as_pdf</i>
-                  Descargar usuarios Eliminados en PDF </a>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <br>
-      
-
       </div>
-      <!-- /.row -->
 
 
+      <!-- LISTADO DE USUARIOS INACTIVOS-->
+      <div class="col-xl-4 col-md-4 ">
+        <div class="card">
+          <img src="assets/images/admin/inactivos.svg" class="card-img-top" alt="..." style="width: 88%;">
+
+          <div class="card-body text-center">
+
+            <h5 class="card-title mb-0">Listado de usuarios inactivos</h5>
+            <br>
+            <div class="card-text text-black-50">
+              <a [routerLink]="['/admin/dashboard/users/inactived']">
+                <i class="material-icons">list</i> Listado
+              </a>
+
+            </div>
+            <br>
+            <div class="card-text text-black-50">
+              <a href="#">
+                <i class="material-icons">picture_as_pdf</i> Descargar usuarios inactivos en PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VER LOGS-->
+      <div class="col-xl-4 col-md-4">
+        <div class="card">
+
+
+          <img src="assets/images/admin/logs.svg" class="card-img-top" alt="...">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">LOGS</h5>
+            <br>
+            <div class="card-text text-black-50">
+              <a [routerLink]="['/admin/dashboard/logs']"> <i class="material-icons">list</i>Ver Logs </a>
+
+            </div>
+            <br>
+            <div class="card-text text-black-50">
+              <a href="#"> <i class="material-icons">picture_as_pdf</i> Descargar Logs
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="col-xl-4 col-md-4">
+        <div class="card ">
+          <img src="assets/images/admin/eliminados.svg" class="card-img-top" alt="..."
+            style="width: 70%;margin-left: 50px;">
+
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Ver usuarios eliminados</h5>
+            <br>
+            <div class="card-text text-black-50">
+
+              <a [routerLink]="['/admin/dashboard/users/deleted']"> <i class="material-icons">list</i> Usuarios
+                eliminados
+              </a>
+
+            </div>
+            <br>
+            <div class="card-text text-black-50">
+
+              <a href="#"><i class="material-icons">picture_as_pdf</i>
+                Descargar usuarios Eliminados en PDF </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br>
+      <!-- Team Member 4 -->
+      <div class="col-xl-4 col-md-4">
+        <div class="card ">
+          <img src="assets/images/admin/files.svg" class="card-img-top" alt="..." style="width: 70%;margin-left: 50px;">
+
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Ver Contenidos por activar</h5>
+            <br>
+            <div class="card-text text-black-50">
+
+              <a [routerLink]="['/admin/dashboard/contenidos/activar']"> <i class="material-icons">list</i> Contenidos para activar
+              </a>
+
+            </div>
+            <br>
+            
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+
+    </div>
+    <!-- /.row -->
 
 
 
 
   </div>
-  
+
 
 </section>
