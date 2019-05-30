@@ -171,7 +171,9 @@ public contenidos;
           this.status = 'success';
 
           this._router.navigate(['/admin/dashboard/contenidos/activar']);
+
           this.video=null;
+
 
         } else {
           this.status = 'error';

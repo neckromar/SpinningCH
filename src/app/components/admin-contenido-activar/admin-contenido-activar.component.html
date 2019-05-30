@@ -1,5 +1,6 @@
 <section class="g-pos-rel text-center">
 
+
     <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
         <div class="js-slide g-bg-img-hero  " style="background-color:white;">
             <!-- Page Content -->
@@ -422,4 +423,349 @@
             </div>
         </div>
     </div>
+
+  <!-- Page Content -->
+  <div class="container" >
+      <div class="col-md-8 " id="content">
+        <h2>POSTS</h2>
+          <table>
+              <tr>
+                  <th>Titulo</th>
+                  <th>Autor</th>
+              </tr>
+              <tr *ngFor="let contenido of contenidos[0] | paginate: { itemsPerPage: 4, currentPage: p1,id:'first' }">
+                  <td>{{contenido.title}}</td>
+                  <td>{{contenido.user.name}}</td>
+                  <td>
+                      <!-- boton para editar post-->
+                      <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                          [attr.data-target]="'#myModaledit'+ contenido.id" (click)="getPost(contenido.id)"
+                          *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+
+                      <!-- Modal -->
+                      <div id="{{'myModaledit'+contenido.id}}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>Estas seguro de querrer activar a este contenido?
+                                      </p>
+
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                          (click)="onEditPost()">Activar</a>
+                                      <button type="button" class="btn btn-success"
+                                          data-dismiss="modal">Close</button>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+
+                  </td>
+                  <td>
+                      <!-- boton para borrar-->
+                      <!-- Trigger the modal with a button -->
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                          [attr.data-target]="'#myModal'+ contenido.id"
+                          *ngIf="identity.role_id == 1">Borrar</button>
+
+
+                      <!-- Modal -->
+                      <div id="{{'myModal'+contenido.id}}" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>Estas seguro de querrer borrar este contenido ? SE BORRARÁ PERMANENTEMENTE!!
+                                      </p>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                          (click)="deletePost(contenido.id)">BORRAR</a>
+
+                                      <button type="button" class="btn btn-success"
+                                          data-dismiss="modal">Close</button>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+
+
+          </table>
+          <pagination-controls (pageChange)="p1 = $event" id="first"></pagination-controls>
+      </div>
+
+      <div class="col-md-8 " id="content">
+          <h2>IMAGENES</h2>
+            <table>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Autor</th>
+                </tr>
+                <tr *ngFor="let contenido of contenidos[1] | paginate: { itemsPerPage: 4, currentPage: s ,id:'second'}">
+                    <td>{{contenido.description}}</td>
+                    <td>{{contenido.user.name}}</td>
+                    <td>
+                        <!-- boton para editar comentario-->
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                            [attr.data-target]="'#myModaledit'+ contenido.id" (click)="getImagen(contenido.id)"
+                            *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+  
+                        <!-- Modal -->
+                        <div id="{{'myModaledit'+contenido.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+  
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Estas seguro de querrer activar a este contenido?
+                                        </p>
+  
+  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                            (click)="onEditImagen()">Activar</a>
+                                        <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+  
+                            </div>
+                        </div>
+  
+                    </td>
+                    <td>
+                        <!-- boton para borrar-->
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                            [attr.data-target]="'#myModal'+ contenido.id"
+                            *ngIf="identity.role_id == 1">Borrar</button>
+
+
+                        <!-- Modal -->
+                        <div id="{{'myModal'+contenido.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Estas seguro de querrer borrar este contenido ? SE BORRARÁ PERMANENTEMENTE!!
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                            (click)="deleteImagen(contenido.id)">BORRAR</a>
+
+                                        <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+  
+  
+            </table>
+            <pagination-controls (pageChange)="s = $event" id="second"></pagination-controls>
+        </div>
+
+        <div class="col-md-8 " id="content">
+            <h2>VIDEOS</h2>
+              <table>
+                  <tr>
+                      <th>Titulo</th>
+                      <th>Autor</th>
+                  </tr>
+                  <tr *ngFor="let contenido of contenidos[2] | paginate: { itemsPerPage: 4, currentPage: d ,id:'tres'}">
+                      <td>{{contenido.title}}</td>
+                      <td>{{contenido.user.name}}</td>
+                      <td>
+                          <!-- boton para editar comentario-->
+                          <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                              [attr.data-target]="'#myModaledit'+ contenido.id" (click)="getVideo(contenido.id)"
+                              *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+    
+                          <!-- Modal -->
+                          <div id="{{'myModaledit'+contenido.id}}" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+    
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <p>Estas seguro de querrer activar a este contenido?
+                                          </p>
+    
+    
+                                      </div>
+                                      <div class="modal-footer">
+                                          <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                              (click)="onEditVideo()">Activar</a>
+                                          <button type="button" class="btn btn-success"
+                                              data-dismiss="modal">Close</button>
+                                      </div>
+                                  </div>
+    
+                              </div>
+                          </div>
+    
+                      </td>
+                      <td>
+                          <!-- boton para borrar-->
+                          <!-- Trigger the modal with a button -->
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                              [attr.data-target]="'#myModal'+ contenido.id"
+                              *ngIf="identity.role_id == 1">Borrar</button>
+  
+  
+                          <!-- Modal -->
+                          <div id="{{'myModal'+contenido.id}}" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+  
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <p>Estas seguro de querrer borrar este contenido ? SE BORRARÁ PERMANENTEMENTE!!
+                                          </p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                              (click)="deleteVideo(contenido.id)">BORRAR</a>
+  
+                                          <button type="button" class="btn btn-success"
+                                              data-dismiss="modal">Close</button>
+                                      </div>
+                                  </div>
+  
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+    
+    
+              </table>
+              <pagination-controls (pageChange)="d = $event" id='tres'></pagination-controls>
+          </div>
+
+
+
+          <div class="col-md-8 " id="content">
+              <h2>COMENTARIOS</h2>
+                <table>
+                    <tr>
+                        <th>Comentario</th>
+                        <th>Imagen id</th>
+                        <th>Video id </th>
+                        <th>Post id</th>
+                        <th>Autor</th>
+                    </tr>
+                    <tr *ngFor="let contenido of contenidos[3] | paginate: { itemsPerPage: 4, currentPage: c ,id:'cuatro' }">
+                        <td>{{contenido.comentario}}</td>
+                        <td>{{contenido.imagen_id}}</td>
+                        <td>{{contenido.video_id}}</td>
+                        <td>{{contenido.post_id}}</td>
+                        <td>{{contenido.usercomentario.name}}</td>
+                        <td>
+                            <!-- boton para editar comentario-->
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                [attr.data-target]="'#myModaledit'+ contenido.id" (click)="getComentario(contenido.id)"
+                                *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+      
+                            <!-- Modal -->
+                            <div id="{{'myModaledit'+contenido.id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+      
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Estas seguro de querrer activar a este contenido?
+                                            </p>
+      
+      
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                                (click)="onEditComentario()">Activar</a>
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+      
+                                </div>
+                            </div>
+      
+                        </td>
+                        <td>
+                            <!-- boton para borrar-->
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                [attr.data-target]="'#myModal'+ contenido.id"
+                                *ngIf="identity.role_id == 1">Borrar</button>
+      
+      
+                            <!-- Modal -->
+                            <div id="{{'myModal'+contenido.id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+      
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Estas seguro de querrer borrar este contenido ? SE BORRARÁ PERMANENTEMENTE!!
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                                (click)="deleteComentario(contenido.id)">BORRAR</a>
+      
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+      
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+      
+      
+                </table>
+                <pagination-controls (pageChange)="c = $event" id="cuatro"></pagination-controls>
+            </div>
+  </div>
+
+
 </section>

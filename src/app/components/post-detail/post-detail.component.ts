@@ -26,16 +26,20 @@ export class PostDetailComponent implements OnInit {
   public status: string;
   public selectedFile: File = null;
   public url;
+
   public contenidos;
+
   public posts: Array<Post>;
   public comentarios: Array<any>;
   public id;
   public verdadero:Boolean;
   public comments: Comentario;
   public contenido_post:string;
+
   public ckeditorContent;
   public ckeConfig;
   public angular;
+
 
   @ViewChild(CKEditorComponent) ckeditor: CKEditorComponent;
   
@@ -118,7 +122,7 @@ export class PostDetailComponent implements OnInit {
             ]
           };
 
-        
+
       });
 
     
@@ -126,8 +130,7 @@ export class PostDetailComponent implements OnInit {
     }
 
   }
-  
-  
+
 
   onEditPost(myForm) {
    //funcion para modificar el propio usuario

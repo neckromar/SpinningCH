@@ -33,7 +33,9 @@ import { AdminUsersInactivedComponent } from './components/admin-users-inactived
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
 import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
+
 import { AdminAddUserComponent } from './components/admin-add-user/admin-add-user.component';
+
 
 
 
@@ -60,8 +62,12 @@ import { AdminAddUserComponent } from './components/admin-add-user/admin-add-use
     AdminUsersInactivedComponent,
     AdminUsersActivedComponent,
     AdminUsersDeletedComponent,
+
     AdminContenidoActivarComponent,
     AdminAddUserComponent
+
+    AdminContenidoActivarComponent
+
     
   ],
   imports: [

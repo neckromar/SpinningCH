@@ -23,7 +23,10 @@ import { AdminUsersInactivedComponent } from './components/admin-users-inactived
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
 import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
+
 import { AdminAddUserComponent } from './components/admin-add-user/admin-add-user.component';
+
+
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -52,9 +55,12 @@ const appRoutes: Routes =[
     {path:'admin/dashboard/users/inactived',  component: AdminUsersInactivedComponent},
     {path:'admin/dashboard/users/actived',  component: AdminUsersActivedComponent},
     {path:'admin/dashboard/users/deleted',  component: AdminUsersDeletedComponent},
+
     {path:'admin/dashboard/contenidos/activar',  component: AdminContenidoActivarComponent},
     {path:'admin/dashboard/users/add',  component: AdminAddUserComponent},
     
+
+
     
     
     
