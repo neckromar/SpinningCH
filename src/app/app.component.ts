@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, DoCheck {
     this.url=GLOBAL.url;
   }
   ngOnInit() {
-    console.log('app.component cargado');
+   
   }
   // comprueba los cambios realizados y actualiza
   ngDoCheck() {

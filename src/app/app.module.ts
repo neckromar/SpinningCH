@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/registro/registro.component';
 import { DefaultComponent } from './components/default/default.component';
-import { UserNewComponent } from './components/user-new/user-new.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ImagenNewComponent } from './components/imagen-new/imagen-new.component';
 import { ImagenDefaultComponent } from './components/imagen-default/imagen-default.component';
@@ -33,6 +32,9 @@ import { AdminLogsComponent } from './components/admin-logs/admin-logs.component
 import { AdminUsersInactivedComponent } from './components/admin-users-inactived/admin-users-inactived.component';
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
+import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
+import { AdminAddUserComponent } from './components/admin-add-user/admin-add-user.component';
+
 
 
 @NgModule({
@@ -41,7 +43,6 @@ import { AdminUsersDeletedComponent } from './components/admin-users-deleted/adm
     LoginComponent,
     RegisterComponent,
     DefaultComponent,
-    UserNewComponent,
     UserEditComponent,
     ImagenNewComponent,
     ImagenDefaultComponent,
@@ -58,7 +59,10 @@ import { AdminUsersDeletedComponent } from './components/admin-users-deleted/adm
     AdminLogsComponent,
     AdminUsersInactivedComponent,
     AdminUsersActivedComponent,
-    AdminUsersDeletedComponent
+    AdminUsersDeletedComponent,
+    AdminContenidoActivarComponent,
+    AdminAddUserComponent
+    
   ],
   imports: [
     BrowserModule,

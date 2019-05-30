@@ -20,6 +20,7 @@ export class ImagenDefaultComponent implements OnInit {
   public title: string;
   public token;
   public identity;
+  public imagen_editar : Imagen;
   public imagen : Imagen;
   public status: string;
   public selectedFile: File = null;
@@ -88,6 +89,49 @@ error => {
 }
 );
 }
+
+getImagen(id){
+
+  this._imagenService.getImagen(id).subscribe(
+
+    response => {
+      if (response.status == 'success') {
+       this.imagen =  response.imagenes;
+      }
+    },
+    error => {
+      console.log(error);
+     
+    }
+  );
+}
+
+onEditImagen(comenteditForm) {
+ //funcion para modificar el propio usuario
+this.imagen.status='ACEPTADO';
+ 
+this.imagen.description = comenteditForm.value.description;
+    
+  this._imagenService.update(this.token, this.imagen, this.imagen.id).subscribe(
+    
+    response => {
+      if (response.status == 'success' ) {
+        this.status = 'success';
+
+        this._router.navigate(['/imagenes/listado']);
+
+      } else {
+        this.status = 'error';
+      }
+
+    },
+    error => {
+      console.log(<any>error);
+      this.status = 'error';
+    }
+  );
+}
+
 
 getImagenes() {
     this._imagenService.getImagenes().subscribe(

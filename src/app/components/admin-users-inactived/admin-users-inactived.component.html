@@ -1,87 +1,137 @@
 <section class="g-pos-rel text-center">
-    <!-- Page Content -->
-    <div class="container">
-        <div class="col-md-8 " id="content">
-            <table>
+    <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+        <div class="js-slide g-bg-img-hero  g-height-100vh " style="background-color:white;">
 
-                <tr>
-                    <th>Nombre</th>
-                </tr>
-                <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td>{{user.name}}</td>
-                    <td>
-                        <!-- boton para editar comentario-->
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                            [attr.data-target]="'#myModaledit'+ user.id" (click)="getUser(user.id)"
-                            *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+            <!-- Page Content -->
+            <!--DIV para hacer el PDF-->
+            <div class="col-md-12" id="content" #content style="display: none">
+                <h2>USUARIOS PARA ACTIVAR</h2>
+                <table class="table " id="users-list">
+                    <tr>
+                        <th>NOMBRE y APELLIDOS</th>
+                        <th>CORREO</th>
+                        <th>ROLE_ID</th>
+                        <th>CREATED_AT</th>
+                    </tr>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.name}} {{user.surname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role_id}}</td>
+                        <td>{{user.created_at}}</td>
+                    </tr>
+                </table>
 
-                        <!-- Modal -->
-                        <div id="{{'myModaledit'+user.id}}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <!--FIN DIV PDF-->
+            <div style="text-align: right;margin-right: 10%;">
+                <h2>DESCARGAR PDF</h2>
+                <button type="button" (click)="downloadPDF()" class="descargarpdf btn btn-primary bg-dark"
+                    title="Descargar PDF INACTIVOS">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                </button>
+            </div>
+
+
+            <!-- Page Content -->
+            <div class="container">
+                <div class="col-lg-12 " id="content">
+                    <div class="table-responsive-lg">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>NOMBRE y APELLIDOS</th>
+                                    <th>CORREO</th>
+                                    <th>ROLE_ID</th>
+                                    <th>CREATED_AT</th>
+                                    <th>EDITAR</th>
+                                    <th>BORRAR</th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td>{{user.name}} {{user.surname}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.role_id}}</td>
+                                <td>{{user.created_at}}</td>
+                                <td>
+                                    <!-- boton para editar USUARIO-->
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                        [attr.data-target]="'#myModaledit'+ user.id" (click)="getUser(user.id)"
+                                        *ngIf=" identity.role_id == 1 ">ACTIVAR</button>
+
+                                    <!-- Modal -->
+                                    <div id="{{'myModaledit'+user.id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Estas seguro de querrer activar a esta persona?
+                                                    </p>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a type="button" class="btn btn-warning" data-dismiss="modal"
+                                                        (click)="onEdit()">Activar</a>
+                                                    <button type="button" class="btn btn-success"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <p>Estas seguro de querrer activar a esta persona?
-                                        </p>
+
+                                </td>
+                                <td>
+                                    <!-- boton para borrar-->
+                                    <!-- Trigger the modal with a button -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        [attr.data-target]="'#myModal'+ user.id"
+                                        *ngIf="identity.role_id == 1">Borrar</button>
 
 
+                                    <!-- Modal -->
+                                    <div id="{{'myModal'+user.id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Estas seguro de querrer borrar este user ? SE BORRARÁ
+                                                        PERMANENTEMENTE!!
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a type="button" class="btn btn-danger" data-dismiss="modal"
+                                                        (click)="deleteUser(user.id)">BORRAR</a>
+
+                                                    <button type="button" class="btn btn-success"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <a type="button" class="btn btn-warning" data-dismiss="modal"
-                                            (click)="onEdit()">Activar</a>
-                                        <button type="button" class="btn btn-success"
-                                            data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
+                                </td>
 
-                            </div>
-                        </div>
-
-                    </td>
-                    <td>
-                        <!-- boton para borrar-->
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                            [attr.data-target]="'#myModal'+ user.id"
-                            *ngIf="identity.role_id == 1">Borrar</button>
+                            </tr>
 
 
-                        <!-- Modal -->
-                        <div id="{{'myModal'+user.id}}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Estas seguro de querrer borrar este user ? SE BORRARÁ PERMANENTEMENTE!!
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a type="button" class="btn btn-danger" data-dismiss="modal"
-                                            (click)="deleteUser(user.id)">BORRAR</a>
-
-                                        <button type="button" class="btn btn-success"
-                                            data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </td>
-
-                </tr>
-
-
-            </table>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </table>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
         </div>
     </div>
-
 </section>

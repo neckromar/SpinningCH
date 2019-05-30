@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit,ViewChild, ElementRef  } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service';
-
-import { Log} from '../../models/log';
-import { LogService } from '../../services/log.service';
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-admin-users-inactived',
   templateUrl: './admin-users-inactived.component.html',
@@ -32,13 +30,33 @@ public user: User;
    
   }
   ngOnInit() {
-    if(this.identity.role_id != 1){
+    if(this.identity == null || this.identity.role_id != 1  ){
       this._router.navigate(['home']);
     }else if(this.identity.role_id == 1){
      
 
       this.getUsers_inactived();
     }
+  }
+
+  @ViewChild('content') content: ElementRef;
+  downloadPDF(){
+
+      let doc = new jsPDF();
+
+      let specialElementHandlers = {
+      '#editor': function(element, renderer){
+          return true;
+      }};
+
+      let content = this.content.nativeElement;
+
+      doc.fromHTML(content.innerHTML, 10, 10, {
+      'width': '350px',
+      'elementHandlers': specialElementHandlers
+      });
+
+      doc.save('Usuarios INACTIVOS Club Spinning Huelva.pdf');
   }
 
   getUsers_inactived(){

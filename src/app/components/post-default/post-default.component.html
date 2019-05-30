@@ -1,47 +1,49 @@
 <section class="g-pos-rel text-center">
 
     <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
-        <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-600"
-        style="background-image: url('assets/images/usuarios/prueba2.jpg');">
+        <div class="js-slide g-bg-img-hero  g-min-height-600"
+            style="background-image: url('assets/images/usuarios/prueba2.jpg');">
 
             <div class="container ">
                 <div class="row ">
 
-                   
+                    <div class="col-lg-12 g-mb-20" *ngIf="status == 'success' ">
+                        <div class="alert alert-success">
+                            La operacion se ha realizado correctamente
+                        </div>
+                    </div>
 
-                    <div class="col-md-4 alejadodeltop " *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }">
-                            
-                        
-                               <div class=" g-mb-20" *ngIf="status == 'success' ">
-                                            <div class="alert alert-success">
-                                                     La operacion se ha realizado correctamente
-                                            </div>
-                                </div>
+                    <div class="col-md-12  " id="content" style="margin-top: 5%;">
+                        <div class="table-responsive-lg">
+                            <table class="table" style="background-color: aliceblue;">
+                                <thead class="thead-dark">
 
-                                <table>
                                     <tr>
                                         <th>Titulo</th>
-                                        <th>Autor</th>
+                                        <th>Autor Nombre</th>
+                                        <th>Autor Apellidos</th>
                                         <th>Acciones</th>
                                     </tr>
-
-                                    <tr>
-                                        <td>{{post.title}}</td>
-                                        <td>{{post.user.name}} {{post.user.surname}}</td>
-                                        <td> <div *ngIf="post.user_id == identity.sub || identity.role == 'ROLE_ADMIN'"
+                                </thead>
+                                <tr *ngFor="let post of posts | paginate: { itemsPerPage: 5, currentPage: p }">
+                                    <td>{{post.title}}</td>
+                                    <td>{{post.user.name}} </td>
+                                     <td>{{post.user.surname}}</td>
+                                    <td>
+                                        <div *ngIf="post.user_id == identity.sub || identity.role_id == 1"
                                             style="align-content: right ;">
-    
-    
+
+
                                             <!-- boton para borrar-->
                                             <!-- Trigger the modal with a button -->
                                             <a type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 [attr.data-target]="'#myModal'+ post.id">X</a>
-    
-    
+
+
                                             <!-- Modal -->
                                             <div id="{{'myModal'+post.id}}" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
-    
+
                                                     <!-- Modal content-->
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -56,30 +58,31 @@
                                                         <div class="modal-footer">
                                                             <a type="button" class="btn btn-danger" data-dismiss="modal"
                                                                 (click)="deletePost(post.id)">BORRAR</a>
-    
+
                                                             <button type="button" class="btn btn-success"
                                                                 data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
-    
+
                                                 </div>
                                             </div>
                                         </div>
-                                            <div class="comments"><a [routerLink]="['/posts',post.id]"
+                                        <div class="comments"><a [routerLink]="['/posts',post.id]"
                                                 class="btn btn-sm btn-success btn-comments"> Ver Post
                                             </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                       
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
                     </div>
-
+                   
                 </div>
-
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
-            
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
         </div>
     </div>
 

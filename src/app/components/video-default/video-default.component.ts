@@ -21,6 +21,7 @@ export class VideoDefaultComponent implements OnInit {
   public token;
   public identity;
   public imagen: Imagen;
+  public video: Video;
   public status: string;
   public selectedFile: File = null;
   public url;
@@ -53,7 +54,48 @@ export class VideoDefaultComponent implements OnInit {
     }
 
   }
+  
+  getVideo(id){
 
+    this._videoService.getVideo(id).subscribe(
+  
+      response => {
+        if (response.status == 'success') {
+         this.video =  response.videos;
+        }
+      },
+      error => {
+        console.log(error);
+       
+      }
+    );
+  }
+
+  onEditVideo(editarVideoForm) {
+   //funcion para modificar el propio usuario
+ this.video.status='ACEPTADO';
+this.video.description = editarVideoForm.value.description;
+this.video.title = editarVideoForm.value.title;
+
+    this._videoService.update(this.token, this.video, this.video.id).subscribe(
+      
+      response => {
+        if (response.status == 'success' ) {
+          this.status = 'success';
+
+          this._router.navigate(['/videos/listado']);
+
+        } else {
+          this.status = 'error';
+        }
+
+      },
+      error => {
+        console.log(<any>error);
+        this.status = 'error';
+      }
+    );
+  }
 
   getVideos() {
     this._videoService.getVideos().subscribe(

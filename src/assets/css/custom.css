@@ -3,8 +3,17 @@
     background-color: #c5f2ff !important;
 }
 
+#comments-list{
+    margin-top: 5% !important;
+}
+.registrocuadro{
+  
+}
 
-
+.ckeditorajustar{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}
 /* Button Green */
 .u-btn-green {
     color: #fff;

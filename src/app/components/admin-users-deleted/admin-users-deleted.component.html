@@ -1,29 +1,69 @@
 <section class="g-pos-rel text-center">
-    <!-- Page Content -->
-    <div class="container">
-        <div class="col-md-8 " id="content">
-            <table>
+    <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+        <div class="js-slide g-bg-img-hero  g-height-100vh" style="background-color:white;">
+            <!-- Page Content -->
+            <!--DIV para hacer el PDF-->
+            <div class="col-lg-12" id="content" #content style="display: none">
+                <h2>USUARIOS ELIMINADOS</h2>
+                <table class="table" id="users-list">
+                    <tr>
+                        <th>ID</th>
+                        <th>N y A</th>
 
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Email</th>
-                    <th>Role_id</th>
-                </tr>
-                <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td>{{user.id}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.surname}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.role_id}}</td>
-                 
-                </tr>
+                        <th>Email</th>
+                        <th>Role_id</th>
+                    </tr>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.id}}</td>
+                        <td>{{user.name}} - {{user.surname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role_id}}</td>
+                    </tr>
+                </table>
 
 
-            </table>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+            </div>
+            <!--FIN DIV PDF-->
+            <div style="text-align: right;margin-right: 10%;">
+                <h2>DESCARGAR PDF</h2>
+                <button type="button" (click)="downloadPDF()" class="descargarpdf btn btn-primary bg-dark"
+                    title="Descargar PDF ELIMINADOS">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                </button>
+            </div>
+
+
+            <!-- Page Content -->
+            <div class="container">
+                <div class="col-lg-12 " id="content">
+                    <div class="table-responsive-lg">
+                        <table class="table">
+                            <thead class="thead-dark">
+
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Email</th>
+                                    <th>Role_id</th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td>{{user.id}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.surname}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.role_id}}</td>
+
+                            </tr>
+
+
+                        </table>
+                    </div>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
         </div>
     </div>
-
 </section>
