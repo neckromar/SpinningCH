@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef  } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service';
-
+import * as jsPDF from 'jspdf';
 
 import { Log} from '../../models/log';
-import { LogService } from '../../services/log.service';
 @Component({
   selector: 'app-admin-logs',
   templateUrl: './admin-logs.component.html',
@@ -40,6 +39,25 @@ export class AdminLogsComponent implements OnInit {
       this.getLogs();
     }
 
+  }
+
+  @ViewChild('content') content: ElementRef;
+  downloadPDF(){
+
+      let doc = new jsPDF();
+
+      let specialElementHandlers = {
+      '#editor': function(element, renderer){
+          return true;
+      }};
+
+      let content = this.content.nativeElement;
+
+      doc.fromHTML(content.innerHTML, 10, 10, {
+      'elementHandlers': specialElementHandlers
+      });
+
+      doc.save('LOGS Club Spinning Huelva.pdf');
   }
 
   getLogs(){

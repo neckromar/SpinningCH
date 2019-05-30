@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit,ViewChild, ElementRef  } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service';
+import * as jsPDF from 'jspdf';
 
 import { Log} from '../../models/log';
 import { LogService } from '../../services/log.service';
@@ -41,6 +43,25 @@ export class AdminUsersActivedComponent implements OnInit {
     }
   }
 
+  @ViewChild('content') content: ElementRef;
+  downloadPDF(){
+
+      let doc = new jsPDF();
+
+      let specialElementHandlers = {
+      '#editor': function(element, renderer){
+          return true;
+      }};
+
+      let content = this.content.nativeElement;
+
+      doc.fromHTML(content.innerHTML, 10, 10, {
+      'width': '350px',
+      'elementHandlers': specialElementHandlers
+      });
+
+      doc.save('Usuarios ACTIVOS Club Pesca Huelva.pdf');
+  }
 
  //funcion para modificar el propio usuario
  onEdit(form,event) {

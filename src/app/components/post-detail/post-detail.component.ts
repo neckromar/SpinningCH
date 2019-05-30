@@ -26,14 +26,20 @@ export class PostDetailComponent implements OnInit {
   public status: string;
   public selectedFile: File = null;
   public url;
+
+  public contenidos;
+
   public posts: Array<Post>;
   public comentarios: Array<any>;
   public id;
   public verdadero:Boolean;
   public comments: Comentario;
   public contenido_post:string;
-  public ckeditorContent: string ="<b>Probando</b>"
+
+  public ckeditorContent;
   public ckeConfig;
+  public angular;
+
 
   @ViewChild(CKEditorComponent) ckeditor: CKEditorComponent;
   
@@ -58,20 +64,16 @@ export class PostDetailComponent implements OnInit {
       this._router.navigate(["login"]);
     } else {
 
-      this.post= new Post(1,
-        this.identity.sub,
-        '',
-       '',
-       'ACTIVAR');
-  
+   
 
       this._route.params.subscribe(params => {
         this.id = +params['id'];
 
 
         this.getPost(this.id);
-         this.contenido_post  =this.post.description;
-      
+
+        this.contenido_post  =this.post.description;
+
          this.comments = new Comentario(1,
           this.identity.sub,
           '',
@@ -128,10 +130,7 @@ export class PostDetailComponent implements OnInit {
     }
 
   }
-  onChange($event: any): void {
-    console.log("onChange");
-    //this.log += new Date() + "<br />";
-  }
+
 
   onEditPost(myForm) {
    //funcion para modificar el propio usuario
@@ -166,9 +165,16 @@ this.post.title = myForm.value.title;
       response => {
         if (response.status == 'success') {
 
-          console.log(response);
-          this.post = response.post;
-          this.comentarios = response.comentarios;
+          if(response.post.status != 'ACEPTADO' && this.identity.role_id != 1) {
+            this._router.navigate(["posts/listado"]);
+          }else{
+            this.post = response.post;
+
+            this.comentarios = response.comentarios;
+            this.contenidos = this.post.description;
+          }
+        
+         
         }
       },
       error => {

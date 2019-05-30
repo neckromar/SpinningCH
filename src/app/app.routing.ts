@@ -5,7 +5,6 @@ import { Routes,RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/registro/registro.component';
 import { DefaultComponent } from './components/default/default.component';
-import { UserNewComponent } from './components/user-new/user-new.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ImagenNewComponent } from './components/imagen-new/imagen-new.component';
 import { ImagenDefaultComponent } from './components/imagen-default/imagen-default.component';
@@ -24,6 +23,10 @@ import { AdminUsersInactivedComponent } from './components/admin-users-inactived
 import { AdminUsersActivedComponent } from './components/admin-users-actived/admin-users-actived.component';
 import { AdminUsersDeletedComponent } from './components/admin-users-deleted/admin-users-deleted.component';
 import { AdminContenidoActivarComponent } from './components/admin-contenido-activar/admin-contenido-activar.component';
+
+import { AdminAddUserComponent } from './components/admin-add-user/admin-add-user.component';
+
+
 
 const appRoutes: Routes =[
     {path:'', component:DefaultComponent},
@@ -52,7 +55,12 @@ const appRoutes: Routes =[
     {path:'admin/dashboard/users/inactived',  component: AdminUsersInactivedComponent},
     {path:'admin/dashboard/users/actived',  component: AdminUsersActivedComponent},
     {path:'admin/dashboard/users/deleted',  component: AdminUsersDeletedComponent},
-    {path:'admin/dashboard/contenidos/activar',  component: AdminContenidoActivarComponent}
+
+    {path:'admin/dashboard/contenidos/activar',  component: AdminContenidoActivarComponent},
+    {path:'admin/dashboard/users/add',  component: AdminAddUserComponent},
+    
+
+
     
     
     

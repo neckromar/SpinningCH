@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit,ViewChild, ElementRef  } from '@angular/core';
+
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service';
+
+import * as jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -31,5 +36,5 @@ public status;
       this._router.navigate(['home']);
     }
   }
- 
+
 }

@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+.sectionverpost{
+    margin-bottom: 10%;
+}
 .avatar_edit{
     width: 30%;
     border-radius: 100px;
@@ -16,7 +20,7 @@ form .avatar{
     margin-bottom: 15px;
 }
 .alinearalcentro{
-    margin-left: 15%;
+  
 }
 .nav-item{
     margin-top:50px !important;
@@ -44,6 +48,9 @@ form .avatar{
 .linksvideo{
    margin-left: 40%;
     
+}
+.comments-list{
+    margin-top: 5% !important;
 }
 .alcentro{
     align-items: center;
@@ -93,6 +100,7 @@ form .avatar{
     max-height: 400px;
     overflow: hidden;
 }
+
 
 .image-container img{
     width: 100%;

@@ -26917,7 +26917,7 @@ pre[class*="language-"] .toolbar-item a {
   height: 70vh; }
 
 .g-height-100vh {
-  height: 100vh !important; }
+  height: 100vh !important; }   
 
 /* Min Height in Viewport Height (vh) */
 .g-min-height-50vh {
@@ -26940,6 +26940,7 @@ pre[class*="language-"] .toolbar-item a {
   height: auto; }
 
 @media (min-width: 576px) {
+  
   .g-height-100vh--sm {
     height: 100vh !important; }
   .g-height-auto--sm {

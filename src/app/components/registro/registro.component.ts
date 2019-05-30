@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit{
   public title: string;
   public user: User;
   public status: string;
-
+  public identity;
 constructor(
     private _route: ActivatedRoute,
     private _router: Router, 
@@ -20,11 +20,13 @@ constructor(
 ){
     this.title = 'Registrate';
     this.user= new User(1,3,'','','','','');
-
-
+    this.identity = this._userService.getIdentity();
 }
+
 ngOnInit(){
-console.log('Registro.component cargado correctamente!!');
+    if(this.identity != null  ){
+        this._router.navigate(['home']);
+      }
 }
 
 onSubmit(form){

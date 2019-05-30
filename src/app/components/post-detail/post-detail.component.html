@@ -1,20 +1,37 @@
-<section class="g-pos-rel text-center">
+
+<section class="g-pos-rel text-center sectionverpost">
+
 
 
     <div class="container">
 
         <div class="row">
 
-            <div class="col-sm-8">
+
+            <div class="col-lg-8">
                 <h2>Titulo: {{post.title}}</h2>
                 <hr>
-                <div class="col-sm-8 alinearalcentro">
+                <div class="col-lg-12 ">
+
 
                     <div class="card card-default video-data">
                         <div class="card-header">
                             <img src="{{url + 'user/image-collect/'+ post.user.image_path}}" style="text-align: center;"
                                 class="avatar_nav" />
                             Subido por <strong> {{post.user.name}} {{post.user.surname}} </strong>
+
+
+                        </div>
+                        <div class="card-body description">
+                                
+                              
+
+                                        <p >{{contenidos}}</p>
+                                    
+                                   
+                                    
+                      
+
 
                         </div>
                         <div class="card-body description">
@@ -91,7 +108,9 @@
 
             </div>
             <hr>
-            <div class="col-sm-4" id='comments-list'>
+
+            <div class="col-lg-4" id='comments-list'>
+
                 <h4>Comentarios</h4>
                 <div class="card card-default video-data"
                     *ngFor="let comentario of comentarios | paginate: { itemsPerPage: 2, currentPage: p }">
@@ -200,7 +219,9 @@
                 </div>
 
                 <h4>Comentar</h4>
-                <form #comentForm="ngForm" (ngSubmit)="onSubmit(comentForm)" class="col-sm-10">
+
+                <form #comentForm="ngForm" (ngSubmit)="onSubmit(comentForm)" class="col-lg-10">
+
                     <p><textarea name="comentario" class="form-control col-md-12" #comentario="ngModel"
                             [(ngModel)]="comentario.comentario" required placeholder="Comentario"></textarea></p>
 

@@ -1,6 +1,154 @@
 <section class="g-pos-rel text-center">
 
 
+  <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+      <div class="js-slide g-bg-img-hero  g-height-100vh g-min-height-600"
+      style="background-image: url('assets/images/usuarios/prueba2.jpg');">
+
+      <!-- Page Content -->
+      <div class="container">
+        <div class="row bajar">
+
+          <!-- LISTADO DE USUARIOS ACTIVOS -->
+          <div class=" col-md-2">
+            <div class="card">
+
+              <img src="assets/images/admin/activos.svg" class="card-img-top" alt="...">
+
+              <div class="card-body text-center">
+
+                <h5 class="card-title mb-0">Listado de usuarios activos</h5>
+                <br>
+                <div class="card-text text-black-50">
+
+                  <a [routerLink]="['/admin/dashboard/users/actived']"> <i class="material-icons">list</i> Listado </a>
+
+                </div>
+                <br>
+                <div class="card-text text-black-50">
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- LISTADO DE USUARIOS INACTIVOS-->
+          <div class="col-md-2 ">
+            <div class="card">
+              <img src="assets/images/admin/inactivos.svg" class="card-img-top" alt="...">
+
+              <div class="card-body text-center">
+
+                <h5 class="card-title mb-0">Listado de usuarios inactivos</h5>
+                <br>
+                <div class="card-text text-black-50">
+                  <a [routerLink]="['/admin/dashboard/users/inactived']">
+                    <i class="material-icons">list</i> Listado
+                  </a>
+
+                </div>
+                <br>
+                <div class="card-text text-black-50">
+              
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VER USUARIOS ELIMINADOS-->
+          <div class=" col-md-2">
+            <div class="card ">
+              <img src="assets/images/admin/eliminados.svg" class="card-img-top" alt="...">
+
+              <div class="card-body text-center">
+                <h5 class="card-title mb-0">Ver usuarios eliminados</h5>
+                <br>
+                <div class="card-text text-black-50">
+
+                  <a [routerLink]="['/admin/dashboard/users/deleted']"> <i class="material-icons">list</i> Usuarios
+                    eliminados
+                  </a>
+
+                </div>
+                <br>
+                <div class="card-text text-black-50">
+               
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <br>
+
+          <!-- VER LOGS-->
+          <div class="col-md-2">
+            <div class="card">
+
+
+              <img src="assets/images/admin/logs.svg" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title mb-0">LOGS</h5>
+                <br>
+                <div class="card-text text-black-50">
+                  <a [routerLink]="['/admin/dashboard/logs']"> <i class="material-icons">list</i>Ver Logs </a>
+
+                </div>
+                <br>
+                <div class="card-text text-black-50">
+                 
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- VER CONTENIDOS PARA ACTIVAR -->
+          <div class="col-md-2">
+            <div class="card ">
+              <img src="assets/images/admin/files.svg" class="card-img-top" alt="...">
+
+              <div class="card-body text-center">
+                <h5 class="card-title mb-0">Ver Contenidos por activar</h5>
+                <br>
+                <div class="card-text text-black-50">
+
+                  <a [routerLink]="['/admin/dashboard/contenidos/activar']"> <i class="material-icons">list</i>
+                    Contenidos para activar
+                  </a>
+                  <br>
+               
+                </div>
+                <br>
+
+              </div>
+
+            </div>
+          </div>
+          <br>
+
+          <!-- AÑADIR UN NUEVO USUARIO -->
+          <div class="col-md-2">
+            <div class="card ">
+              <img src="assets/images/admin/files.svg" class="card-img-top" alt="...">
+
+              <div class="card-body text-center">
+                <h5 class="card-title mb-0">Añadir un usuario</h5>
+                <br>
+                <div class="card-text text-black-50">
+                  <a [routerLink]="['/admin/dashboard/users/add']"> <i class="material-icons">list</i> Añadir pescador
+                  </a>
+
+                </div>
+                <br>
+
+              </div>
+
+            </div>
+          </div>
+          <br>
+
+
+
 
   <!-- Page Content -->
   <div class="container">
@@ -131,13 +279,17 @@
       <br>
 
 
+        </div>
+        <!-- /.row -->
+
     </div>
     <!-- /.row -->
 
 
 
+      </div>
 
+    </div>
   </div>
-
 
 </section>

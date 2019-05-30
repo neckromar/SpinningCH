@@ -22,9 +22,12 @@ export class LoginComponent implements OnInit {
   ) {
     this.title = 'Identificate';
     this.user = new User(1, 3, '', '', '','', '');
-
+    this.identity = this._userService.getIdentity();
   }
   ngOnInit() {
+    if(this.identity != null  ){
+      this._router.navigate(['home']);
+    }
     this.logout();
   }
 
